@@ -13,7 +13,7 @@ public class AlertsApiApplication {
 	
 	public static void main(String[] args) {
 		SpringApplication.run(AlertsApiApplication.class, args);
-		logger.info("app init");
+		logger.info("app inititialized");
 	}
 	
 }
