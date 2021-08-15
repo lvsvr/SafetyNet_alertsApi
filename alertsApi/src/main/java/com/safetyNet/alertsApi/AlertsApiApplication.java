@@ -1,13 +1,19 @@
 package com.safetyNet.alertsApi;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 
 @SpringBootApplication
 public class AlertsApiApplication {
 
+	private static final Logger logger = LogManager.getLogger(AlertsApiApplication.class);
+	
 	public static void main(String[] args) {
 		SpringApplication.run(AlertsApiApplication.class, args);
+		logger.info("app init");
 	}
-
+	
 }
