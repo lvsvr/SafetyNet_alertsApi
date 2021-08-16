@@ -5,13 +5,13 @@ import lombok.Data;
 @Data
 public class Person {
 	
-	private final String firstName;
-	private final String lastName;
-	private final String address;
-	private final String city;
-	private final String zip;
-	private final String phone;
-	private final String mail;
+	private String firstName;
+	private String lastName;
+	private String address;
+	private String city;
+	private String zip;
+	private String phone;
+	private String mail;
 	
 	public Person(String firstName, String lastName, String address, String city, String zip, String phone,
 			String mail) {
@@ -51,6 +51,34 @@ public class Person {
 
 	public String getMail() {
 		return mail;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public void setZip(String zip) {
+		this.zip = zip;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public void setMail(String mail) {
+		this.mail = mail;
 	}
 	
 }

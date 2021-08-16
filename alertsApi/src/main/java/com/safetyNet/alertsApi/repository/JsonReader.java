@@ -13,6 +13,8 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import com.safetyNet.alertsApi.AlertsApiApplication;
+import com.safetyNet.alertsApi.model.Firestation;
+import com.safetyNet.alertsApi.model.MedicalRecord;
 import com.safetyNet.alertsApi.model.Person;
 
 import lombok.Data;
@@ -62,9 +64,56 @@ public class JsonReader {
 		//System.out.println(persons);
 		logger.info("persons: ");
 		for(Person person :persons) {
-		logger.info(person.getFirstName());
+		logger.info(person.getFirstName()+" "+person.getLastName());
 		}		
 		return persons;
+	}
+	
+	public ArrayList<Firestation> getFirestationsFromJson(JSONObject dataJsonObject) {
+			
+			JSONArray jsonArray = (JSONArray) dataJsonObject.get("firestations");
+			ArrayList<Firestation> firestations = new ArrayList<Firestation>();
+			for(int i=0; i<jsonArray.size(); i++) {
+				JSONObject jsonFirestation = (JSONObject)jsonArray.get(i);
+				
+				String address = (String) jsonFirestation.get("address");
+				String station = (String) jsonFirestation.get("station");
+							
+				Firestation firestation = new Firestation(address,station);
+				//System.out.println(person.getLastName());
+				firestations.add(firestation);
+			}
+			//System.out.println(persons);
+			logger.info("firestations: ");
+			for(Firestation firestation :firestations) {
+			logger.info(firestation.getAddress()+": st."+firestation.getStation());
+			}		
+			return firestations;
+		}
+
+	public ArrayList<MedicalRecord> getMedicalRecordsFromJson(JSONObject dataJsonObject) {
+		
+		JSONArray jsonArray = (JSONArray) dataJsonObject.get("medicalrecords");
+		ArrayList<MedicalRecord> medicalRecords = new ArrayList<MedicalRecord>();
+		for(int i=0; i<jsonArray.size(); i++) {
+			JSONObject jsonMedicalRecord = (JSONObject)jsonArray.get(i);
+			
+			String firstName = (String) jsonMedicalRecord.get("firstName");
+			String lastName = (String) jsonMedicalRecord.get("lastName");
+			String birthDate = (String) jsonMedicalRecord.get("birthdate");
+			ArrayList<String> medications = (ArrayList<String>) jsonMedicalRecord.get("medications");
+			ArrayList<String> allergies = (ArrayList<String>) jsonMedicalRecord.get("allergies");
+			
+			MedicalRecord medicalRecord = new MedicalRecord(firstName, lastName, birthDate, medications, allergies);
+			//System.out.println(person.getLastName());
+			medicalRecords.add(medicalRecord);
+		}
+		//System.out.println(persons);
+		logger.info("medicalrecords: ");
+		for(MedicalRecord medicalRecord :medicalRecords) {
+		logger.info(medicalRecord.getFirstName()+" "+medicalRecord.getLastName()+" "+medicalRecord.getBirthDate()+" "+medicalRecord.getMedications()+" "+medicalRecord.getAllergies());
+		}		
+		return medicalRecords;
 	}
 	
 }

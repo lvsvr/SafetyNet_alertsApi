@@ -8,6 +8,8 @@ import org.json.simple.JSONObject;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.safetyNet.alertsApi.model.Firestation;
+import com.safetyNet.alertsApi.model.MedicalRecord;
 import com.safetyNet.alertsApi.model.Person;
 import com.safetyNet.alertsApi.repository.JsonReader;
 
@@ -19,6 +21,8 @@ public class AlertsApiApplication {
 	static JsonReader jsonReader = new JsonReader();
 	static JSONObject dataJsonObject;
 	static ArrayList<Person> persons;
+	static ArrayList<Firestation> firestations;
+	static ArrayList<MedicalRecord> medicalRecords;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(AlertsApiApplication.class, args);
@@ -26,7 +30,8 @@ public class AlertsApiApplication {
 		dataJsonObject = jsonReader.readDataFromJsonFile();
 		//logger.info(dataJsonObject);
 		persons = jsonReader.getPersonsFromJson(dataJsonObject);
-		
+		firestations = jsonReader.getFirestationsFromJson(dataJsonObject);
+		medicalRecords = jsonReader.getMedicalRecordsFromJson(dataJsonObject);
 	}
 	
 }
