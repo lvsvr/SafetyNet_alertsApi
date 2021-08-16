@@ -64,7 +64,7 @@ public class JsonReader {
 		//System.out.println(persons);
 		logger.info("persons: ");
 		for(Person person :persons) {
-		logger.info(person.getFirstName()+" "+person.getLastName());
+		logger.info(person.getFirstName()+" "+person.getLastName()+" "+person.getAddress()+" "+ person.getCity()+" "+person.getZip()+" "+person.getPhone()+" "+person.getEmail());
 		}		
 		return persons;
 	}
