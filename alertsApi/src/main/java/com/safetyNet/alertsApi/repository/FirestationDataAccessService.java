@@ -11,7 +11,7 @@ import com.safetyNet.alertsApi.AlertsApiApplication;
 import com.safetyNet.alertsApi.model.Firestation;
 
 @Repository
-public class FirestationDataAccessService {
+public class FirestationDataAccessService implements FirestationDAO {
 	private static final Logger logger = LogManager.getLogger(AlertsApiApplication.class);
 	private static JsonReader jsonReader = new JsonReader();
 	private static ArrayList<Firestation> firestations;
@@ -21,5 +21,11 @@ public class FirestationDataAccessService {
 		JSONObject dataJsonObject = jsonReader.readDataFromJsonFile();
 		firestations = jsonReader.getFirestationsFromJson(dataJsonObject);
 		
+	}
+
+	@Override
+	public ArrayList<Firestation> getAllFirestations() {
+		// TODO Auto-generated method stub
+		return firestations;
 	}
 }

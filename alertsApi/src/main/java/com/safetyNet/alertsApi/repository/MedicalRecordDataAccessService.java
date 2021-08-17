@@ -11,7 +11,7 @@ import com.safetyNet.alertsApi.AlertsApiApplication;
 import com.safetyNet.alertsApi.model.MedicalRecord;
 
 @Repository
-public class MedicalRecordDataAccessService {
+public class MedicalRecordDataAccessService implements MedicalRecordDAO{
 	private static final Logger logger = LogManager.getLogger(AlertsApiApplication.class);
 	private static JsonReader jsonReader = new JsonReader();
 	private static ArrayList<MedicalRecord> medicalRecords;
@@ -20,6 +20,12 @@ public class MedicalRecordDataAccessService {
 		super();
 		JSONObject dataJsonObject = jsonReader.readDataFromJsonFile();
 		medicalRecords = jsonReader.getMedicalRecordsFromJson(dataJsonObject);
+	}
+
+	@Override
+	public ArrayList<MedicalRecord> getAllMedicalRecords() {
+		// TODO Auto-generated method stub
+		return medicalRecords;
 	}
 	
 	
