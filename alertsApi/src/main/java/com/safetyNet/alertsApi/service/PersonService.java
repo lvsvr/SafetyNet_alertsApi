@@ -1,6 +1,7 @@
 package com.safetyNet.alertsApi.service;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -26,5 +27,14 @@ public class PersonService {
 	public int insertPerson(Person person) {
 		
 		return personDao.insertPerson(person);
+	}
+	public Optional <Person> getPersonByNames(String firstName, String lastName){
+		return personDao.getPersonByNames(firstName, lastName);
+	}
+	public int deletePersonByNames(String firstName, String lastName) {
+		return personDao.deletePersonByNames(firstName, lastName);
+	}
+	public int updatePersonByNames(String firstName, String lastName, Person updatedPerson) {
+		return personDao.updatePersonByNames(firstName, lastName, updatedPerson);
 	}
 }

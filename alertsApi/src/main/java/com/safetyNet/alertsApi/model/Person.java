@@ -32,6 +32,11 @@ public class Person {
 		this.email = email;
 	}
 
+	public Person() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getFirstName() {
 		return firstName;
 	}

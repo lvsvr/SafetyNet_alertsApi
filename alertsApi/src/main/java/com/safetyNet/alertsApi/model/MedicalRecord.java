@@ -26,6 +26,12 @@ public class MedicalRecord {
 		this.medications = medications;
 		this.allergies = allergies;
 	}
+	
+	public MedicalRecord() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getFirstName() {
 		return firstName;
 	}

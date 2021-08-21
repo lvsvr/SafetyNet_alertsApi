@@ -17,6 +17,11 @@ public class Firestation {
 		this.station = station;
 	}
 
+	public Firestation() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getAddress() {
 		return address;
 	}

@@ -1,6 +1,7 @@
 package com.safetyNet.alertsApi.service;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -27,6 +28,10 @@ public class MedicalRecordService {
 	public int insertMedicalRecord(MedicalRecord medicalRecord) {
 		
 		return medicalRecordDao.insertMedicalRecord(medicalRecord);
+	}
+	
+	public Optional<MedicalRecord> getMedicalRecordByNames(String firstName, String lastName){
+		return medicalRecordDao.getMedicalRecordByNames(firstName, lastName);
 	}
 	
 	}

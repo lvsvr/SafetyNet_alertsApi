@@ -1,6 +1,7 @@
 package com.safetyNet.alertsApi.service;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -27,5 +28,9 @@ public class FirestationService {
 	public int insertFirestation(Firestation firestation) {
 		
 		return firestationDao.insertFirestation(firestation);
+	}
+	
+	public Optional<Firestation> getFirestationByAddress(String address){
+		return firestationDao.getFirestationByAddress(address);
 	}
 }

@@ -1,6 +1,7 @@
 package com.safetyNet.alertsApi.repository;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -32,6 +33,28 @@ public class MedicalRecordDataAccessService implements MedicalRecordDAO{
 	public int insertMedicalRecord(MedicalRecord medicalRecord) {
 		medicalRecords.add(new MedicalRecord(medicalRecord.getFirstName(), medicalRecord.getLastName(), medicalRecord.getBirthDate(), medicalRecord.getMedications(), medicalRecord.getAllergies()));
 		return 1;
+	}
+
+	@Override
+	public Optional<MedicalRecord> getMedicalRecordByNames(String firstName, String lastName) {
+		MedicalRecord namedMedicalRecord = new MedicalRecord();
+		for(MedicalRecord medicalRecord : medicalRecords) {
+			if(medicalRecord.getFirstName().equals(firstName) && medicalRecord.getLastName().equals(lastName))
+				namedMedicalRecord = medicalRecord;
+		}
+		return Optional.of(namedMedicalRecord);
+	}
+
+	@Override
+	public int updateMedicalRecordByNames(String firstName, String lastName) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int deleMedicalRecordByNames(String firstName, String lastName) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 	
