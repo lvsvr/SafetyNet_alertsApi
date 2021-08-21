@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.safetyNet.alertsApi.AlertsApiApplication;
 import com.safetyNet.alertsApi.model.MedicalRecord;
 
-@Repository
+@Repository("medicalRecordDao")
 public class MedicalRecordDataAccessService implements MedicalRecordDAO{
 	private static final Logger logger = LogManager.getLogger(AlertsApiApplication.class);
 	private static JsonReader jsonReader = new JsonReader();
@@ -26,6 +26,12 @@ public class MedicalRecordDataAccessService implements MedicalRecordDAO{
 	public ArrayList<MedicalRecord> getAllMedicalRecords() {
 		// TODO Auto-generated method stub
 		return medicalRecords;
+	}
+
+	@Override
+	public int insertMedicalRecord(MedicalRecord medicalRecord) {
+		medicalRecords.add(new MedicalRecord(medicalRecord.getFirstName(), medicalRecord.getLastName(), medicalRecord.getBirthDate(), medicalRecord.getMedications(), medicalRecord.getAllergies()));
+		return 1;
 	}
 	
 	

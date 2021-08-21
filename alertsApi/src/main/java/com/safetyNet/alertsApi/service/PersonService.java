@@ -3,6 +3,7 @@ package com.safetyNet.alertsApi.service;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.safetyNet.alertsApi.repository.PersonDAO;
@@ -14,7 +15,7 @@ public class PersonService {
 	private final PersonDAO personDao;
 
 	@Autowired
-	public PersonService(PersonDAO personDao) {
+	public PersonService (@Qualifier("personDao")PersonDAO personDao) {
 		super();
 		this.personDao = personDao;
 	}
@@ -22,7 +23,8 @@ public class PersonService {
 	public ArrayList<Person> getAllPersons(){
 		return personDao.getAllPersons();
 	}
-	
-	
-
+	public int insertPerson(Person person) {
+		
+		return personDao.insertPerson(person);
+	}
 }

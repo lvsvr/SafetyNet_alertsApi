@@ -2,6 +2,8 @@ package com.safetyNet.alertsApi.model;
 
 import java.util.ArrayList;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.Data;
 
 @Data
@@ -12,8 +14,11 @@ public class MedicalRecord {
 	private String birthDate;
 	private ArrayList<String> medications;
 	private ArrayList<String> allergies;
-	public MedicalRecord(String firstName, String lastName, String birthDate, ArrayList<String> medications,
-			ArrayList<String> allergies) {
+	public MedicalRecord(@JsonProperty("firstName")String firstName, 
+						@JsonProperty("lastName")String lastName, 
+						@JsonProperty("birthdate")String birthDate, 
+						@JsonProperty("medications")ArrayList<String> medications,
+						@JsonProperty("allergies")ArrayList<String> allergies) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;

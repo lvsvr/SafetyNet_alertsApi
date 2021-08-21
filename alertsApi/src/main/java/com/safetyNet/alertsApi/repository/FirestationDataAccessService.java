@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.safetyNet.alertsApi.AlertsApiApplication;
 import com.safetyNet.alertsApi.model.Firestation;
 
-@Repository
+@Repository("firestationDao")
 public class FirestationDataAccessService implements FirestationDAO {
 	private static final Logger logger = LogManager.getLogger(AlertsApiApplication.class);
 	private static JsonReader jsonReader = new JsonReader();
@@ -27,5 +27,11 @@ public class FirestationDataAccessService implements FirestationDAO {
 	public ArrayList<Firestation> getAllFirestations() {
 		// TODO Auto-generated method stub
 		return firestations;
+	}
+
+	@Override
+	public int insertFirestation(Firestation firestation) {
+		firestations.add(new Firestation(firestation.getAddress(), firestation.getStation()));
+		return 1;
 	}
 }

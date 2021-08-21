@@ -8,4 +8,6 @@ public interface PersonDAO {
 	
 	ArrayList<Person> getAllPersons();
 
+	int insertPerson(Person person);
+
 }
