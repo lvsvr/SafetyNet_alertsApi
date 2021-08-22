@@ -14,23 +14,31 @@ import com.safetyNet.alertsApi.model.Firestation;
 public class FirestationService {
 
 	private final FirestationDAO firestationDao;
-	
+
 	@Autowired
-	public FirestationService(@Qualifier("firestationDao")FirestationDAO firestationDao) {
+	public FirestationService(@Qualifier("firestationDao") FirestationDAO firestationDao) {
 		super();
 		this.firestationDao = firestationDao;
 	}
-	
-	public ArrayList<Firestation> getAllFirestations(){
+
+	public ArrayList<Firestation> getAllFirestations() {
 		return firestationDao.getAllFirestations();
 	}
-	
+
 	public int insertFirestation(Firestation firestation) {
-		
+
 		return firestationDao.insertFirestation(firestation);
 	}
-	
-	public Optional<Firestation> getFirestationByAddress(String address){
+
+	public Optional<Firestation> getFirestationByAddress(String address) {
 		return firestationDao.getFirestationByAddress(address);
+	}
+
+	public int deleteFirestationByAddress(String address) {
+		return firestationDao.deleteFirestationByAddress(address);
+	}
+
+	public int updateFirestationByAddress(String address, Firestation updatedFirestation) {
+		return firestationDao.updateFirestationByAddress(address, updatedFirestation);
 	}
 }

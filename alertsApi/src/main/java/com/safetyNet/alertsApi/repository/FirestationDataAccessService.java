@@ -16,17 +16,16 @@ public class FirestationDataAccessService implements FirestationDAO {
 	private static final Logger logger = LogManager.getLogger(AlertsApiApplication.class);
 	private static JsonReader jsonReader = new JsonReader();
 	private static ArrayList<Firestation> firestations;
-	
-	public FirestationDataAccessService(){
+
+	public FirestationDataAccessService() {
 		super();
 		JSONObject dataJsonObject = jsonReader.readDataFromJsonFile();
 		firestations = jsonReader.getFirestationsFromJson(dataJsonObject);
-		
+
 	}
 
 	@Override
 	public ArrayList<Firestation> getAllFirestations() {
-		// TODO Auto-generated method stub
 		return firestations;
 	}
 
@@ -39,22 +38,43 @@ public class FirestationDataAccessService implements FirestationDAO {
 	@Override
 	public Optional<Firestation> getFirestationByAddress(String address) {
 		Firestation namedFirestation = new Firestation();
-		for(Firestation firestation : firestations) {
-			if(firestation.getAddress().equals(address))
+		for (Firestation firestation : firestations) {
+			if (firestation.getAddress().equals(address))
 				namedFirestation = firestation;
 		}
 		return Optional.of(namedFirestation);
 	}
 
 	@Override
-	public int updateFirestationByAddress(String address) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int updateFirestationByAddress(String address, Firestation updatedFirestation) {
+		Optional<Firestation> firestationToUpdate = getFirestationByAddress(address);
+		if (firestationToUpdate == null) {
+			return 0;
+		}
+		ArrayList<Firestation> firestationsMemo = new ArrayList<Firestation>();
+		for (Firestation firestation : firestations) {
+			if (!firestation.getAddress().equals(address)) {
+				firestationsMemo.add(firestation);
+			} else if (firestation.getAddress().equals(address)) {
+				firestationsMemo.add(updatedFirestation);
+			}
+		}
+		firestations = firestationsMemo;
+		return 1;
 	}
 
 	@Override
 	public int deleteFirestationByAddress(String address) {
-		// TODO Auto-generated method stub
-		return 0;
+		Optional<Firestation> firestationToDelete = getFirestationByAddress(address);
+		if (firestationToDelete == null) {
+			return 0;
+		}
+		ArrayList<Firestation> firestationsMemo = new ArrayList<Firestation>();
+		for (Firestation firestation : firestations) {
+			if (!(firestation.getAddress().equals(address)))
+				firestationsMemo.add(firestation);
+		}
+		firestations = firestationsMemo;
+		return 1;
 	}
 }

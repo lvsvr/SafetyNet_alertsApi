@@ -12,28 +12,32 @@ import com.safetyNet.alertsApi.model.Person;
 
 @Service
 public class PersonService {
-	
+
 	private final PersonDAO personDao;
 
 	@Autowired
-	public PersonService (@Qualifier("personDao")PersonDAO personDao) {
+	public PersonService(@Qualifier("personDao") PersonDAO personDao) {
 		super();
 		this.personDao = personDao;
 	}
-	
-	public ArrayList<Person> getAllPersons(){
+
+	public ArrayList<Person> getAllPersons() {
 		return personDao.getAllPersons();
 	}
+
 	public int insertPerson(Person person) {
-		
+
 		return personDao.insertPerson(person);
 	}
-	public Optional <Person> getPersonByNames(String firstName, String lastName){
+
+	public Optional<Person> getPersonByNames(String firstName, String lastName) {
 		return personDao.getPersonByNames(firstName, lastName);
 	}
+
 	public int deletePersonByNames(String firstName, String lastName) {
 		return personDao.deletePersonByNames(firstName, lastName);
 	}
+
 	public int updatePersonByNames(String firstName, String lastName, Person updatedPerson) {
 		return personDao.updatePersonByNames(firstName, lastName, updatedPerson);
 	}

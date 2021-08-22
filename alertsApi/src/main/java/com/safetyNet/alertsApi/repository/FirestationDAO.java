@@ -8,12 +8,12 @@ import com.safetyNet.alertsApi.model.Firestation;
 public interface FirestationDAO {
 
 	ArrayList<Firestation> getAllFirestations();
-	
-	Optional<Firestation>getFirestationByAddress(String address);
-	
+
+	Optional<Firestation> getFirestationByAddress(String address);
+
 	int insertFirestation(Firestation firestation);
-	
-	int updateFirestationByAddress(String address);
-	
+
+	int updateFirestationByAddress(String address, Firestation updatedFirestation);
+
 	int deleteFirestationByAddress(String address);
 }

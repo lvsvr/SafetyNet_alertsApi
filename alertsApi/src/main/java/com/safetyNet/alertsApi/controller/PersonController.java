@@ -19,7 +19,7 @@ import com.safetyNet.alertsApi.service.PersonService;
 @RequestMapping("/person")
 @RestController
 public class PersonController {
-	
+
 	private final PersonService personService;
 
 	@Autowired
@@ -29,27 +29,28 @@ public class PersonController {
 	}
 
 	@GetMapping
-	public ArrayList<Person> getAllPersons(){
+	public ArrayList<Person> getAllPersons() {
 		return personService.getAllPersons();
 	}
-	
+
 	@PostMapping
-	public void insertPerson(@RequestBody Person person){
+	public void insertPerson(@RequestBody Person person) {
 		personService.insertPerson(person);
 	}
-	
-	@GetMapping(path= "{firstName}/{lastName}")
-	public Optional<Person> getPersonByNames(@PathVariable String firstName,@PathVariable String lastName) {
+
+	@GetMapping(path = "{firstName}/{lastName}")
+	public Optional<Person> getPersonByNames(@PathVariable String firstName, @PathVariable String lastName) {
 		return personService.getPersonByNames(firstName, lastName);
 	}
-	
-	@DeleteMapping(path= "{firstName}/{lastName}")
+
+	@DeleteMapping(path = "{firstName}/{lastName}")
 	public void deletePersonByNames(@PathVariable String firstName, @PathVariable String lastName) {
 		personService.deletePersonByNames(firstName, lastName);
 	}
-	
-	@PutMapping(path="{firstName}/{lastName}" )
-	public void updatePersonByNames(@PathVariable String firstName, @PathVariable String lastName, @RequestBody Person updatedPerson) {
+
+	@PutMapping(path = "{firstName}/{lastName}")
+	public void updatePersonByNames(@PathVariable String firstName, @PathVariable String lastName,
+			@RequestBody Person updatedPerson) {
 		personService.updatePersonByNames(firstName, lastName, updatedPerson);
 	}
 }

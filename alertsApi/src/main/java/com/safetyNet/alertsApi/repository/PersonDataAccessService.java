@@ -12,17 +12,16 @@ import com.safetyNet.alertsApi.AlertsApiApplication;
 import com.safetyNet.alertsApi.model.Person;
 
 @Repository("personDao")
-public class PersonDataAccessService implements PersonDAO{
+public class PersonDataAccessService implements PersonDAO {
 	private static final Logger logger = LogManager.getLogger(AlertsApiApplication.class);
 	private static JsonReader jsonReader = new JsonReader();
 	private static ArrayList<Person> persons;
-	
+
 	public PersonDataAccessService() {
 		super();
 		JSONObject dataJsonObject = jsonReader.readDataFromJsonFile();
 		persons = jsonReader.getPersonsFromJson(dataJsonObject);
-		
-		
+
 	}
 
 	@Override
@@ -31,16 +30,17 @@ public class PersonDataAccessService implements PersonDAO{
 	}
 
 	@Override
-	public int insertPerson(Person person){
-		persons.add(new Person(person.getFirstName(), person.getLastName(), person.getAddress(), person.getCity(), person .getZip(), person.getPhone(), person.getEmail()));
+	public int insertPerson(Person person) {
+		persons.add(new Person(person.getFirstName(), person.getLastName(), person.getAddress(), person.getCity(),
+				person.getZip(), person.getPhone(), person.getEmail()));
 		return 1;
 	}
 
 	@Override
 	public Optional<Person> getPersonByNames(String firstName, String lastName) {
 		Person namedPerson = new Person();
-		for(Person person : persons) {
-			if(person.getFirstName().equals(firstName) && person.getLastName().equals(lastName)) {
+		for (Person person : persons) {
+			if (person.getFirstName().equals(firstName) && person.getLastName().equals(lastName)) {
 				namedPerson = person;
 			}
 		}
@@ -49,47 +49,35 @@ public class PersonDataAccessService implements PersonDAO{
 
 	@Override
 	public int updatePersonByNames(String firstName, String lastName, Person updatedPerson) {
-		Optional<Person>personToUpdate = getPersonByNames(firstName, lastName);
-		if(personToUpdate == null) {
-		return 0;
+		Optional<Person> personToUpdate = getPersonByNames(firstName, lastName);
+		if (personToUpdate == null) {
+			return 0;
 		}
-		ArrayList<Person>personsMemo = new ArrayList<Person>();
-		for(Person person :persons) {
-			if(!(person.getFirstName().equals(firstName) && person.getLastName().equals(lastName))) {
+		ArrayList<Person> personsMemo = new ArrayList<Person>();
+		for (Person person : persons) {
+			if (!(person.getFirstName().equals(firstName) && person.getLastName().equals(lastName))) {
 				personsMemo.add(person);
-			}
-			else if(person.getFirstName().equals(firstName) && person.getLastName().equals(lastName)) {
+			} else if (person.getFirstName().equals(firstName) && person.getLastName().equals(lastName)) {
 				personsMemo.add(updatedPerson);
+			}
 		}
 		persons = personsMemo;
 		return 1;
-	}
-			
-		
-		
-		return 0;
 	}
 
 	@Override
 	public int deletePersonByNames(String firstName, String lastName) {
-		Optional<Person>personToDelete = getPersonByNames(firstName, lastName);
-		if(personToDelete == null) {
-		return 0;
+		Optional<Person> personToDelete = getPersonByNames(firstName, lastName);
+		if (personToDelete == null) {
+			return 0;
 		}
-		ArrayList<Person>personsMemo = new ArrayList<Person>();
-		for(Person person :persons) {
-			if(!(person.getFirstName().equals(firstName) && person.getLastName().equals(lastName))) {
+		ArrayList<Person> personsMemo = new ArrayList<Person>();
+		for (Person person : persons) {
+			if (!(person.getFirstName().equals(firstName) && person.getLastName().equals(lastName))) {
 				personsMemo.add(person);
 			}
 		}
 		persons = personsMemo;
 		return 1;
 	}
-
-	//public ArrayList<Person> getPersonsArrayListFromJson(){
-	//return persons;
-	//String firstName, String lastName, String address, String city, String zip, String phone,
-	//String email
-	//firstName, lastName, address, city, zip, phone,email
-	// (new Person(person.getFirstName(), person.getLastName(), person.getAddress(), person.getCity(), person .getZip(), person.getPhone(), person.getEmail()));
 }

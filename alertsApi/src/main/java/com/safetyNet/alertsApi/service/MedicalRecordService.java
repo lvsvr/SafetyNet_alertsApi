@@ -16,23 +16,29 @@ public class MedicalRecordService {
 	private final MedicalRecordDAO medicalRecordDao;
 
 	@Autowired
-	public MedicalRecordService(@Qualifier("medicalRecordDao")MedicalRecordDAO medicalRecordDao) {
+	public MedicalRecordService(@Qualifier("medicalRecordDao") MedicalRecordDAO medicalRecordDao) {
 		super();
 		this.medicalRecordDao = medicalRecordDao;
 	}
-	
-	public ArrayList<MedicalRecord> getAllMedicalRecords(){
+
+	public ArrayList<MedicalRecord> getAllMedicalRecords() {
 		return medicalRecordDao.getAllMedicalRecords();
 	}
-	
+
 	public int insertMedicalRecord(MedicalRecord medicalRecord) {
-		
+
 		return medicalRecordDao.insertMedicalRecord(medicalRecord);
 	}
-	
-	public Optional<MedicalRecord> getMedicalRecordByNames(String firstName, String lastName){
+
+	public Optional<MedicalRecord> getMedicalRecordByNames(String firstName, String lastName) {
 		return medicalRecordDao.getMedicalRecordByNames(firstName, lastName);
 	}
-	
+
+	public int deleteMedicalRecordByNames(String firstName, String lastName) {
+		return medicalRecordDao.deleteMedicalRecordByNames(firstName, firstName);
 	}
 
+	public int updateMedicalRecordByNames(String firstName, String lastName, MedicalRecord updatedMedicalRecord) {
+		return medicalRecordDao.updateMedicalRecordByNames(firstName, lastName, updatedMedicalRecord);
+	}
+}
