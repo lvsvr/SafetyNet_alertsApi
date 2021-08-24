@@ -1,5 +1,7 @@
 package com.safetyNet.alertsApi.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.Data;
 
 @Data
@@ -13,8 +15,13 @@ public class Person {
 	private String phone;
 	private String email;
 	
-	public Person(String firstName, String lastName, String address, String city, String zip, String phone,
-			String email) {
+	public Person(@JsonProperty("firstName")String firstName, 
+				@JsonProperty("lastName")String lastName, 
+				@JsonProperty("address")String address, 
+				@JsonProperty("city")String city, 
+				@JsonProperty("zip")String zip, 
+				@JsonProperty("phone")String phone,
+				@JsonProperty("email")String email) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -23,6 +30,11 @@ public class Person {
 		this.zip = zip;
 		this.phone = phone;
 		this.email = email;
+	}
+
+	public Person() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	public String getFirstName() {

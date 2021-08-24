@@ -1,4 +1,4 @@
-package com.safetyNet.alertsApi;
+package com.safetyNet.alertsApi.repository;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
