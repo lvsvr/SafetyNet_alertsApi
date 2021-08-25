@@ -16,7 +16,7 @@ public class FirestationDataAccessService implements FirestationDAO {
 	private static final Logger logger = LogManager.getLogger(AlertsApiApplication.class);
 	private static JsonReader jsonReader = new JsonReader();
 	private static ArrayList<Firestation> firestations;
-
+	
 	public FirestationDataAccessService() {
 		super();
 		JSONObject dataJsonObject = jsonReader.readDataFromJsonFile();
@@ -77,4 +77,5 @@ public class FirestationDataAccessService implements FirestationDAO {
 		firestations = firestationsMemo;
 		return 1;
 	}
+
 }

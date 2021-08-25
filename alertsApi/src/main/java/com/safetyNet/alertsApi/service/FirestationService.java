@@ -41,4 +41,5 @@ public class FirestationService {
 	public int updateFirestationByAddress(String address, Firestation updatedFirestation) {
 		return firestationDao.updateFirestationByAddress(address, updatedFirestation);
 	}
+
 }
