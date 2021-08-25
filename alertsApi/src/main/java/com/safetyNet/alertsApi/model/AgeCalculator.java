@@ -15,7 +15,7 @@ public class AgeCalculator {
 	}
 
 	public int calculateAge(String birthdate) {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
 		LocalDate bDate = LocalDate.parse(birthdate, formatter);
 		String currentDate = formatter.format(java.time.LocalDate.now());
 		LocalDate cDate = LocalDate.parse(currentDate, formatter);
