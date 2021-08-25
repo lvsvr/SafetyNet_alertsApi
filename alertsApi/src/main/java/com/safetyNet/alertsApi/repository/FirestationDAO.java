@@ -16,4 +16,5 @@ public interface FirestationDAO {
 	int updateFirestationByAddress(String address, Firestation updatedFirestation);
 
 	int deleteFirestationByAddress(String address);
+
 }

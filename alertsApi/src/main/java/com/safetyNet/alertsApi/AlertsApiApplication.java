@@ -19,6 +19,10 @@ public class AlertsApiApplication {
 		AgeCalculator ac = new AgeCalculator();
 		MedicalRecord mr = new MedicalRecord("Bart", "Simpson", "26/08/1991", null, null);
 		logger.info(ac.calculateAge(mr.getBirthDate()));
+//		HomeService hs = new HomeService(null, null, null, null, null, null, null, null);
+//		logger.info(hs.getHomeList(hs.getAddressList()));
+//		FirestationDataAccessService firestationDao = new FirestationDataAccessService();
+//		ArrayList<Firestation> firestations = firestationDao.getAllFirestations();
+//		logger.info(firestations);
 	}
-
 }
