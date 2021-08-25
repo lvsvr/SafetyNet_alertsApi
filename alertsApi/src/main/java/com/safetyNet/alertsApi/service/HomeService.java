@@ -26,8 +26,4 @@ public class HomeService {
 	public ArrayList<Home> getHomeList() {
 		return homeDao.getHomeList();
 	}
-	
-	public ArrayList<String> getListOfPersonsByFirestationNumber(String firestationNumber){
-		return homeDao.getListOfPersonsByFirestationNumber(firestationNumber);
-	}
 }

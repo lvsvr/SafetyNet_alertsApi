@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.safetyNet.alertsApi.model.Firestation;
 import com.safetyNet.alertsApi.service.FirestationService;
+import com.safetyNet.alertsApi.service.HomeFirestationUrlService;
 import com.safetyNet.alertsApi.service.HomeService;
 
 @RequestMapping("/firestation")
@@ -25,12 +25,14 @@ public class FirestationController {
 
 	private final FirestationService firestationService;
 	private final HomeService homeService;
+	private final HomeFirestationUrlService homeFirestationUrlService;
 
 	@Autowired
-	public FirestationController(FirestationService firestationService, HomeService homeService) {
+	public FirestationController(FirestationService firestationService, HomeService homeService, HomeFirestationUrlService homeFirestationUrlService) {
 		super();
 		this.firestationService = firestationService;
 		this.homeService = homeService;
+		this.homeFirestationUrlService = homeFirestationUrlService;
 	}
 
 //	@GetMapping
@@ -63,6 +65,6 @@ public class FirestationController {
 	
 	@GetMapping
 	public ArrayList<String> getListOfPersonsByFirestationNumber(@RequestParam(value="stationNumber")String firestationNumber){
-		return homeService.getListOfPersonsByFirestationNumber(firestationNumber);
+		return homeFirestationUrlService.getListOfPersonsByFirestationNumber(firestationNumber);
 	}
 }
