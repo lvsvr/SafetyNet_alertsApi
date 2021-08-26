@@ -15,18 +15,12 @@ import com.safetyNet.alertsApi.model.Person;
 @Repository("homefirestationUrlDao")
 public class HomeFirestationURLDataAccessService implements HomeFirestationUrlDAO{
 	private static final Logger logger = LogManager.getLogger(AlertsApiApplication.class);
-	private FirestationDataAccessService firestationDao;
-	private PersonDataAccessService personDao;
-	private MedicalRecordDataAccessService medicalRecordDao;
 	private HomeDataAccessService homeDao;
 	
 	public HomeFirestationURLDataAccessService(FirestationDataAccessService firestationDao,
 			PersonDataAccessService personDao, MedicalRecordDataAccessService medicalRecordDao,
 			HomeDataAccessService homeDao) {
 		super();
-		this.firestationDao = firestationDao;
-		this.personDao = personDao;
-		this.medicalRecordDao = medicalRecordDao;
 		this.homeDao = homeDao;
 	}
 	
