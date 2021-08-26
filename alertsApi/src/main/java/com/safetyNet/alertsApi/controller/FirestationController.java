@@ -24,14 +24,12 @@ import com.safetyNet.alertsApi.service.HomeService;
 public class FirestationController {
 
 	private final FirestationService firestationService;
-	private final HomeService homeService;
 	private final HomeFirestationUrlService homeFirestationUrlService;
 
 	@Autowired
 	public FirestationController(FirestationService firestationService, HomeService homeService, HomeFirestationUrlService homeFirestationUrlService) {
 		super();
 		this.firestationService = firestationService;
-		this.homeService = homeService;
 		this.homeFirestationUrlService = homeFirestationUrlService;
 	}
 
