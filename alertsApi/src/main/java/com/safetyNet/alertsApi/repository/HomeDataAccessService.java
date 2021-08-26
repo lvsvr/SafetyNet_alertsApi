@@ -117,4 +117,15 @@ public class HomeDataAccessService implements HomeDAO{
 		insertMedicalRecords(homeList);
 		return homeList;
 	}
+	
+	@Override
+	public Home getHomeByAddress(String address) {
+		ArrayList<Home> homes = getHomeList();
+		Home searchedHome = null;	
+		for(Home home :homes) {
+			if(home.getAddress().equals(address))
+				searchedHome = home;
+			}
+		return searchedHome;
+	}
 }
