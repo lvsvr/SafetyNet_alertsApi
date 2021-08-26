@@ -18,4 +18,6 @@ public interface HomeDAO {
 
 	ArrayList<Home> getHomeList();
 	
+	Home getHomeByAddress(String address);
+	
 }
