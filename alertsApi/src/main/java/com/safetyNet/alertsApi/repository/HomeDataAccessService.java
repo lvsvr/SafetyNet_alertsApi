@@ -13,6 +13,7 @@ import com.safetyNet.alertsApi.model.Home;
 import com.safetyNet.alertsApi.model.MedicalRecord;
 import com.safetyNet.alertsApi.model.Person;
 import com.safetyNet.alertsApi.model.PersonForEmergencyCase;
+import com.safetyNet.alertsApi.model.PersonInfo;
 
 
 
@@ -169,6 +170,5 @@ public class HomeDataAccessService implements HomeDAO{
 		}
 		return personsForEmergencyCaseList;
 	}
-	
 	
 }

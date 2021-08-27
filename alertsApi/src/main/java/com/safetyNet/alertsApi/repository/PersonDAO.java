@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 import com.safetyNet.alertsApi.model.Person;
+import com.safetyNet.alertsApi.model.PersonForEmergencyCase;
+import com.safetyNet.alertsApi.model.PersonInfo;
 
 public interface PersonDAO {
 
