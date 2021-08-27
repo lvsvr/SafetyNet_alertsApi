@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.safetyNet.alertsApi.model.PersonForFireCase;
+import com.safetyNet.alertsApi.model.PersonForEmergencyCase;
 import com.safetyNet.alertsApi.repository.FireDAO;
 
 @Service
@@ -20,8 +20,8 @@ public class FireService {
 		this.fireDao = fireDao;
 	}
 
-	public ArrayList<PersonForFireCase> getPersonsListByAdress(String address) {
-		return fireDao.getPersonsListByAdress(address);
+	public ArrayList<PersonForEmergencyCase> getPersonsListByAddress(String address) {
+		return fireDao.getPersonsListByAddress(address);
 	}
 
 }

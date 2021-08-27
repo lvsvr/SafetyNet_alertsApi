@@ -3,6 +3,7 @@ package com.safetyNet.alertsApi.repository;
 import java.util.ArrayList;
 
 import com.safetyNet.alertsApi.model.Home;
+import com.safetyNet.alertsApi.model.PersonForEmergencyCase;
 
 public interface HomeDAO {
 
@@ -19,5 +20,9 @@ public interface HomeDAO {
 	ArrayList<Home> getHomeList();
 	
 	Home getHomeByAddress(String address);
+	
+	ArrayList<PersonForEmergencyCase> getPersonsListByAddress(String address);
+	
+	ArrayList<PersonForEmergencyCase> getPersonsListByAddressList(ArrayList<String> addressList);
 	
 }

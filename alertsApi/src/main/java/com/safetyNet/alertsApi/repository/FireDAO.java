@@ -2,10 +2,10 @@ package com.safetyNet.alertsApi.repository;
 
 import java.util.ArrayList;
 
-import com.safetyNet.alertsApi.model.PersonForFireCase;
+import com.safetyNet.alertsApi.model.PersonForEmergencyCase;
 
 public interface FireDAO {
 
-	ArrayList<PersonForFireCase> getPersonsListByAdress(String address);
+	ArrayList<PersonForEmergencyCase> getPersonsListByAddress(String address);
 
 }

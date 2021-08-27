@@ -7,8 +7,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
-public class PersonForFireCase {
+public class PersonForEmergencyCase {
 
+	private String address;
 	private String firestation;
 	private String firstName;
 	private String lastName;
@@ -17,12 +18,14 @@ public class PersonForFireCase {
 	private ArrayList<String> medications;
 	private ArrayList<String> allergies;
 
-	public PersonForFireCase(@JsonProperty("firsestation") String firestation,
+	public PersonForEmergencyCase(@JsonProperty("address") String address,
+			@JsonProperty("firsestation") String firestation,
 			@JsonProperty("firstName") String firstName, @JsonProperty("lasttName") String lastName,
 			@JsonProperty("age") String age, @JsonProperty("phone") String phone,
 			@JsonProperty("medications") ArrayList<String> medications,
 			@JsonProperty("allergies") ArrayList<String> allergies) {
 		super();
+		this.address = address;
 		this.firestation = firestation;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -32,7 +35,15 @@ public class PersonForFireCase {
 		this.allergies = allergies;
 	}
 
-	public PersonForFireCase() {
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public PersonForEmergencyCase() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

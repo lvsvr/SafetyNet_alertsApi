@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.safetyNet.alertsApi.model.PersonForFireCase;
+import com.safetyNet.alertsApi.model.PersonForEmergencyCase;
 import com.safetyNet.alertsApi.service.FireService;
 
 @RequestMapping("/fire")
@@ -22,9 +22,9 @@ public class FireController {
 	}
 
 	@GetMapping
-	public ArrayList<PersonForFireCase> getPersonsListByAdress(@RequestParam(value = "address") String address) {
+	public ArrayList<PersonForEmergencyCase> getPersonsListByAddress(@RequestParam(value = "address") String address) {
 		address = address.replaceAll("_", " ");
-		return fireService.getPersonsListByAdress(address);
+		return fireService.getPersonsListByAddress(address);
 	}
 
 }
