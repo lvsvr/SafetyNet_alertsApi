@@ -7,44 +7,34 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
-public class PersonForEmergencyCase {
-
-	private String address;
-	private String firestation;
+public class PersonInfo {
+	
 	private String firstName;
 	private String lastName;
+	private String address;
 	private String age;
-	private String phone;
+	private String email;
 	private ArrayList<String> medications;
 	private ArrayList<String> allergies;
-
-	public PersonForEmergencyCase(@JsonProperty("address") String address,
-			@JsonProperty("firsestation") String firestation,
-			@JsonProperty("firstName") String firstName, 
-			@JsonProperty("lasttName") String lastName,
-			@JsonProperty("age") String age, @JsonProperty("phone") String phone,
-			@JsonProperty("medications") ArrayList<String> medications,
-			@JsonProperty("allergies") ArrayList<String> allergies) {
+	
+	public PersonInfo(@JsonProperty("firstName")String firstName, 
+			@JsonProperty("lastName")String lastName, 
+			@JsonProperty("address")String address, 
+			@JsonProperty("age") String age, 
+			@JsonProperty("email") String email,
+			@JsonProperty("medications")ArrayList<String> medications, 
+			@JsonProperty("allergies")ArrayList<String> allergies) {
 		super();
-		this.address = address;
-		this.firestation = firestation;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.address = address;
 		this.age = age;
-		this.phone = phone;
+		this.email = email;
 		this.medications = medications;
 		this.allergies = allergies;
 	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public PersonForEmergencyCase() {
+	
+	public PersonInfo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -65,6 +55,14 @@ public class PersonForEmergencyCase {
 		this.lastName = lastName;
 	}
 
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
 	public String getAge() {
 		return age;
 	}
@@ -73,12 +71,12 @@ public class PersonForEmergencyCase {
 		this.age = age;
 	}
 
-	public String getPhone() {
-		return phone;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public ArrayList<String> getMedications() {
@@ -97,12 +95,6 @@ public class PersonForEmergencyCase {
 		this.allergies = allergies;
 	}
 
-	public String getFirestation() {
-		return firestation;
-	}
 
-	public void setFirestation(String firestation) {
-		this.firestation = firestation;
-	}
-
+	
 }
