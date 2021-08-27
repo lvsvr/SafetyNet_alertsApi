@@ -2,6 +2,7 @@ package com.safetyNet.alertsApi.repository;
 
 import java.util.ArrayList;
 import java.util.Optional;
+import java.util.Set;
 
 import com.safetyNet.alertsApi.model.Firestation;
 
@@ -16,5 +17,8 @@ public interface FirestationDAO {
 	int updateFirestationByAddress(String address, Firestation updatedFirestation);
 
 	int deleteFirestationByAddress(String address);
-
+	
+	Set<String> getAddressListByFirestation(String firestationNumber);
+	
+	ArrayList<String> getAddressListByFirestationList(ArrayList<String> firestationsNumbers);
 }

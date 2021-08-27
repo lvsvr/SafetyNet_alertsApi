@@ -11,7 +11,7 @@ import com.safetyNet.alertsApi.model.AgeCalculator;
 import com.safetyNet.alertsApi.model.Home;
 import com.safetyNet.alertsApi.model.MedicalRecord;
 import com.safetyNet.alertsApi.model.Person;
-import com.safetyNet.alertsApi.model.PersonForFireCase;
+import com.safetyNet.alertsApi.model.PersonForEmergencyCase;
 
 @Repository("firesDao")
 public class FireDataAccessService implements FireDAO {
@@ -25,32 +25,8 @@ public class FireDataAccessService implements FireDAO {
 	}
 
 	@Override
-	public ArrayList<PersonForFireCase> getPersonsListByAdress(String address) {
-		Home home = homeDataAccessService.getHomeByAddress(address);
-		ArrayList<String> personsList = new ArrayList<String>();
-		personsList.add("Firestation: " + home.getStation());
-		ArrayList<Person> persons = home.getPersons();
-		ArrayList<MedicalRecord> medicalRecords = home.getMedicalRecords();
-		ArrayList<PersonForFireCase> personsForFireCase = new ArrayList<PersonForFireCase>();
-		AgeCalculator ac = new AgeCalculator();
-		for (Person person : persons) {
-			PersonForFireCase personFfc = new PersonForFireCase();
-			personFfc.setFirestation("firestation: " + home.getStation());
-			personFfc.setFirstName("firstName: " + person.getFirstName());
-			personFfc.setLastName("lastName: " + person.getLastName());
-			personFfc.setPhone("phone: " + person.getPhone());
-			for (MedicalRecord medicalRecord : medicalRecords) {
-				if (medicalRecord.getFirstName().equals(person.getFirstName())
-						&& medicalRecord.getLastName().equals(person.getLastName())) {
-					personFfc.setAge("age: " + ac.calculateAge(medicalRecord.getBirthDate()));
-					personFfc.setMedications(medicalRecord.getMedications());
-					personFfc.setAllergies(medicalRecord.getAllergies());
-				}
-			}
-			personsForFireCase.add(personFfc);
-		}
-
-		return personsForFireCase;
+	public ArrayList<PersonForEmergencyCase> getPersonsListByAddress(String address) {
+		return homeDataAccessService.getPersonsListByAddress(address);
 	}
 
 }

@@ -1,7 +1,9 @@
 package com.safetyNet.alertsApi.repository;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,7 +18,7 @@ public class FirestationDataAccessService implements FirestationDAO {
 	private static final Logger logger = LogManager.getLogger(AlertsApiApplication.class);
 	private static JsonReader jsonReader = new JsonReader();
 	private static ArrayList<Firestation> firestations;
-	
+
 	public FirestationDataAccessService() {
 		super();
 		JSONObject dataJsonObject = jsonReader.readDataFromJsonFile();
@@ -78,4 +80,28 @@ public class FirestationDataAccessService implements FirestationDAO {
 		return 1;
 	}
 
+	@Override
+	public Set<String> getAddressListByFirestation(String firestationNumber) {
+		ArrayList<Firestation> firestations = getAllFirestations();
+		Set<String> addressList = new HashSet<String>();
+		for (Firestation firestation : firestations) {
+			if (firestation.getStation().equals(firestationNumber)) {
+				addressList.add(firestation.getAddress());
+			}
+		}
+		return addressList;
+	}
+
+	@Override
+	public ArrayList<String> getAddressListByFirestationList(ArrayList<String> firestationsNumbers) {
+		ArrayList<String> addressAListByFirestation = new ArrayList<String>();
+		for (String firestationNumber : firestationsNumbers) {
+			for (Firestation firestation : getAllFirestations()) {
+				if (firestation.getStation().equals(firestationNumber)) {
+					addressAListByFirestation.add(firestation.getAddress());
+				}
+			}
+		}
+		return addressAListByFirestation;
+	}
 }

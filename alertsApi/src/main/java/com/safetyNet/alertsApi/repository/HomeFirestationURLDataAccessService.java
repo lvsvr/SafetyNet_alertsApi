@@ -97,6 +97,4 @@ public class HomeFirestationURLDataAccessService implements HomeFirestationUrlDA
 		return arrangedPersons;
 	}
 	
-	
-	
 }

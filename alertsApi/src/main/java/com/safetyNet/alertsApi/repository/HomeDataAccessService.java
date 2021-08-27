@@ -7,10 +7,12 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
 import com.safetyNet.alertsApi.AlertsApiApplication;
+import com.safetyNet.alertsApi.model.AgeCalculator;
 import com.safetyNet.alertsApi.model.Firestation;
 import com.safetyNet.alertsApi.model.Home;
 import com.safetyNet.alertsApi.model.MedicalRecord;
 import com.safetyNet.alertsApi.model.Person;
+import com.safetyNet.alertsApi.model.PersonForEmergencyCase;
 
 
 
@@ -128,4 +130,45 @@ public class HomeDataAccessService implements HomeDAO{
 			}
 		return searchedHome;
 	}
+
+	@Override
+	public ArrayList<PersonForEmergencyCase> getPersonsListByAddress(String address) {
+		Home home = getHomeByAddress(address);
+		ArrayList<String> personsList = new ArrayList<String>();
+		personsList.add("Firestation: " + home.getStation());
+		ArrayList<Person> persons = home.getPersons();
+		ArrayList<MedicalRecord> medicalRecords = home.getMedicalRecords();
+		ArrayList<PersonForEmergencyCase> personsForEmergencyCase = new ArrayList<PersonForEmergencyCase>();
+		AgeCalculator ac = new AgeCalculator();
+		for (Person person : persons) {
+			PersonForEmergencyCase personFec = new PersonForEmergencyCase();
+			personFec.setAddress("address: " + address);
+			personFec.setFirestation("firestation: " + home.getStation());
+			personFec.setFirstName("firstName: " + person.getFirstName());
+			personFec.setLastName("lastName: " + person.getLastName());
+			personFec.setPhone("phone: " + person.getPhone());
+			for (MedicalRecord medicalRecord : medicalRecords) {
+				if (medicalRecord.getFirstName().equals(person.getFirstName())
+						&& medicalRecord.getLastName().equals(person.getLastName())) {
+					personFec.setAge("age: " + ac.calculateAge(medicalRecord.getBirthDate()));
+					personFec.setMedications(medicalRecord.getMedications());
+					personFec.setAllergies(medicalRecord.getAllergies());
+				}
+			}
+			personsForEmergencyCase.add(personFec);
+		}
+
+		return personsForEmergencyCase;
+	}
+
+	@Override
+	public ArrayList<PersonForEmergencyCase> getPersonsListByAddressList(ArrayList<String> addressList) {
+		ArrayList<PersonForEmergencyCase> personsForEmergencyCaseList = new ArrayList<PersonForEmergencyCase>();
+		for (String address :addressList) {
+			personsForEmergencyCaseList.addAll(getPersonsListByAddress(address));
+		}
+		return personsForEmergencyCaseList;
+	}
+	
+	
 }
