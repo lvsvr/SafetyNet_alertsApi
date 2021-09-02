@@ -3,9 +3,6 @@ package com.safetyNet.alertsApi.model;
 import java.util.ArrayList;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import lombok.Data;
-
-@Data
 public class MedicalRecord {
 
 	private String firstName;

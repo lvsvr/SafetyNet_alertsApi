@@ -12,15 +12,20 @@ import org.springframework.stereotype.Repository;
 import com.safetyNet.alertsApi.AlertsApiApplication;
 import com.safetyNet.alertsApi.model.Person;
 
-@Repository("PhoneAlertDao")
-public class PhoneAlertDataAccessService implements PhoneAlertDAO{
+@Repository
+public class PhoneAlertDaoImpl implements PhoneAlertDAO{
 	private static final Logger logger = LogManager.getLogger(AlertsApiApplication.class);
 	private HomeFirestationUrlDAO homeFirestationUrlDao;
 	
 	@Autowired
-	public PhoneAlertDataAccessService(HomeFirestationUrlDAO homeFirestationUrlDao) {
+	public PhoneAlertDaoImpl(HomeFirestationUrlDAO homeFirestationUrlDao) {
 		super();
 		this.homeFirestationUrlDao = homeFirestationUrlDao;
+	}
+
+	public PhoneAlertDaoImpl() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override

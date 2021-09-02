@@ -1,4 +1,4 @@
-package com.safetyNet.alertsApi.repository;
+package com.safetyNet.alertsApi.model;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -13,9 +13,6 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import com.safetyNet.alertsApi.AlertsApiApplication;
-import com.safetyNet.alertsApi.model.Firestation;
-import com.safetyNet.alertsApi.model.MedicalRecord;
-import com.safetyNet.alertsApi.model.Person;
 
 import lombok.Data;
 

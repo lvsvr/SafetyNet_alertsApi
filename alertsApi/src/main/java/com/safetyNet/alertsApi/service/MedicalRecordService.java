@@ -3,8 +3,6 @@ package com.safetyNet.alertsApi.service;
 import java.util.ArrayList;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.safetyNet.alertsApi.repository.MedicalRecordDAO;
@@ -15,8 +13,7 @@ public class MedicalRecordService {
 
 	private final MedicalRecordDAO medicalRecordDao;
 
-	@Autowired
-	public MedicalRecordService(@Qualifier("medicalRecordDao") MedicalRecordDAO medicalRecordDao) {
+	public MedicalRecordService(MedicalRecordDAO medicalRecordDao) {
 		super();
 		this.medicalRecordDao = medicalRecordDao;
 	}

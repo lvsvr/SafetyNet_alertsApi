@@ -2,9 +2,6 @@ package com.safetyNet.alertsApi.model;
 
 import java.util.ArrayList;
 
-import lombok.Data;
-
-@Data
 public class Home {
 	private String address;
 	private String firestation;

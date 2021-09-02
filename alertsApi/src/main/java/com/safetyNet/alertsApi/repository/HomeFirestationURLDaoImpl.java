@@ -12,18 +12,19 @@ import com.safetyNet.alertsApi.model.Home;
 import com.safetyNet.alertsApi.model.MedicalRecord;
 import com.safetyNet.alertsApi.model.Person;
 
-@Repository("homefirestationUrlDao")
-public class HomeFirestationURLDataAccessService implements HomeFirestationUrlDAO{
+@Repository
+public class HomeFirestationURLDaoImpl implements HomeFirestationUrlDAO{
 	private static final Logger logger = LogManager.getLogger(AlertsApiApplication.class);
-	private HomeDataAccessService homeDao;
+	private HomeDaoImpl homeDao;
 	
-	public HomeFirestationURLDataAccessService(FirestationDataAccessService firestationDao,
-			PersonDataAccessService personDao, MedicalRecordDataAccessService medicalRecordDao,
-			HomeDataAccessService homeDao) {
+	public HomeFirestationURLDaoImpl(FirestationDaoImpl firestationDao,
+			PersonDaoImpl personDao, MedicalRecordDaoImpl medicalRecordDao,
+			HomeDaoImpl homeDao) {
 		super();
 		this.homeDao = homeDao;
 	}
-	
+
+
 	@Override
 	public ArrayList<Home> getHomeByFirestationNumber(String firestationNumber) {
 		ArrayList<Home> homeList = homeDao.getHomeList();
