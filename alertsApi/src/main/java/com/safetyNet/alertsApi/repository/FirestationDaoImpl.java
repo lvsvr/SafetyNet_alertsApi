@@ -12,14 +12,15 @@ import org.springframework.stereotype.Repository;
 
 import com.safetyNet.alertsApi.AlertsApiApplication;
 import com.safetyNet.alertsApi.model.Firestation;
+import com.safetyNet.alertsApi.model.JsonReader;
 
-@Repository("firestationDao")
-public class FirestationDataAccessService implements FirestationDAO {
+@Repository
+public class FirestationDaoImpl implements FirestationDAO {
 	private static final Logger logger = LogManager.getLogger(AlertsApiApplication.class);
 	private static JsonReader jsonReader = new JsonReader();
 	private static ArrayList<Firestation> firestations;
 
-	public FirestationDataAccessService() {
+	public FirestationDaoImpl() {
 		super();
 		JSONObject dataJsonObject = jsonReader.readDataFromJsonFile();
 		firestations = jsonReader.getFirestationsFromJson(dataJsonObject);

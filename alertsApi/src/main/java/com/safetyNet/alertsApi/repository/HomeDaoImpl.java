@@ -17,14 +17,14 @@ import com.safetyNet.alertsApi.model.PersonInfo;
 
 
 
-@Repository("homeDao")
-public class HomeDataAccessService implements HomeDAO{
+@Repository
+public class HomeDaoImpl implements HomeDAO{
 	private static final Logger logger = LogManager.getLogger(AlertsApiApplication.class);
-	private FirestationDataAccessService firestationDao;
-	private PersonDataAccessService personDao;
-	private MedicalRecordDataAccessService medicalRecordDao;
+	private FirestationDaoImpl firestationDao;
+	private PersonDaoImpl personDao;
+	private MedicalRecordDaoImpl medicalRecordDao;
 	
-	public HomeDataAccessService(FirestationDataAccessService firestationDao, PersonDataAccessService personDao, MedicalRecordDataAccessService medicalRecordDao) {
+	public HomeDaoImpl(FirestationDaoImpl firestationDao, PersonDaoImpl personDao, MedicalRecordDaoImpl medicalRecordDao) {
 		super();
 		this.firestationDao = firestationDao;
 		this.personDao = personDao;

@@ -13,15 +13,15 @@ import com.safetyNet.alertsApi.model.MedicalRecord;
 import com.safetyNet.alertsApi.model.Person;
 import com.safetyNet.alertsApi.model.PersonInfo;
 
-@Repository("personInfoDao")
-public class PersonInfoDataAccessService implements PersonInfoDAO {
+@Repository
+public class PersonInfoDaoImpl implements PersonInfoDAO {
 	private static final Logger logger = LogManager.getLogger(AlertsApiApplication.class);
-	private PersonDataAccessService personDao;
-	private MedicalRecordDataAccessService medicalRecordDao;
+	private PersonDaoImpl personDao;
+	private MedicalRecordDaoImpl medicalRecordDao;
 
 	@Autowired
-	public PersonInfoDataAccessService(PersonDataAccessService personDao,
-			MedicalRecordDataAccessService medicalRecordDao) {
+	public PersonInfoDaoImpl(PersonDaoImpl personDao,
+			MedicalRecordDaoImpl medicalRecordDao) {
 		super();
 		this.personDao = personDao;
 		this.medicalRecordDao = medicalRecordDao;

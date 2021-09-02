@@ -11,15 +11,15 @@ import com.safetyNet.alertsApi.AlertsApiApplication;
 import com.safetyNet.alertsApi.model.Firestation;
 import com.safetyNet.alertsApi.model.PersonForEmergencyCase;
 
-@Repository("floodDao")
-public class FloodDataAccessService implements FloodDAO{
+@Repository
+public class FloodDaoImpl implements FloodDAO{
 	private static final Logger logger = LogManager.getLogger(AlertsApiApplication.class);
 	
-	private FirestationDataAccessService firestationDatatAccessService;
-	private HomeDataAccessService homeDataAccessService;
+	private FirestationDaoImpl firestationDatatAccessService;
+	private HomeDaoImpl homeDataAccessService;
 	
-	public FloodDataAccessService(FirestationDataAccessService firestationDatatAccessService,
-			HomeDataAccessService homeDataAccessService) {
+	public FloodDaoImpl(FirestationDaoImpl firestationDatatAccessService,
+			HomeDaoImpl homeDataAccessService) {
 		super();
 		this.firestationDatatAccessService = firestationDatatAccessService;
 		this.homeDataAccessService = homeDataAccessService;

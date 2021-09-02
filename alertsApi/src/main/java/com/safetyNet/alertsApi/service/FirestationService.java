@@ -3,8 +3,6 @@ package com.safetyNet.alertsApi.service;
 import java.util.ArrayList;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.safetyNet.alertsApi.repository.FirestationDAO;
@@ -15,8 +13,7 @@ public class FirestationService {
 
 	private final FirestationDAO firestationDao;
 
-	@Autowired
-	public FirestationService(@Qualifier("firestationDao") FirestationDAO firestationDao) {
+	public FirestationService(FirestationDAO firestationDao) {
 		super();
 		this.firestationDao = firestationDao;
 	}

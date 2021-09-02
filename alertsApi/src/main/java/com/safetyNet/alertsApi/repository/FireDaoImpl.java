@@ -13,13 +13,13 @@ import com.safetyNet.alertsApi.model.MedicalRecord;
 import com.safetyNet.alertsApi.model.Person;
 import com.safetyNet.alertsApi.model.PersonForEmergencyCase;
 
-@Repository("firesDao")
-public class FireDataAccessService implements FireDAO {
+@Repository
+public class FireDaoImpl implements FireDAO {
 
 	private static final Logger logger = LogManager.getLogger(AlertsApiApplication.class);
-	private HomeDataAccessService homeDataAccessService;
+	private HomeDaoImpl homeDataAccessService;
 
-	public FireDataAccessService(HomeDataAccessService homeDataAccessService) {
+	public FireDaoImpl(HomeDaoImpl homeDataAccessService) {
 		super();
 		this.homeDataAccessService = homeDataAccessService;
 	}

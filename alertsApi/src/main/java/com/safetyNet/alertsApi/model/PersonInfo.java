@@ -4,9 +4,6 @@ import java.util.ArrayList;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import lombok.Data;
-
-@Data
 public class PersonInfo {
 	
 	private String firstName;

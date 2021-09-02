@@ -12,14 +12,14 @@ import org.springframework.stereotype.Repository;
 import com.safetyNet.alertsApi.AlertsApiApplication;
 import com.safetyNet.alertsApi.model.Person;
 
-@Repository("CommunityEmailDao")
-public class CommunityEmailDataAccessService implements CommunityEmailDAO {
+@Repository
+public class CommunityEmailDaoImpl implements CommunityEmailDAO {
 	private static final Logger logger = LogManager.getLogger(AlertsApiApplication.class);
 
 	@Autowired
-	private PersonDataAccessService personDataAccessService;
+	private PersonDaoImpl personDataAccessService;
 
-	public CommunityEmailDataAccessService(PersonDataAccessService personDataAccessService) {
+	public CommunityEmailDaoImpl(PersonDaoImpl personDataAccessService) {
 		super();
 		this.personDataAccessService = personDataAccessService;
 	}

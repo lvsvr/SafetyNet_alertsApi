@@ -11,13 +11,13 @@ import com.safetyNet.alertsApi.model.AgeCalculator;
 import com.safetyNet.alertsApi.model.Home;
 import com.safetyNet.alertsApi.model.MedicalRecord;
 
-@Repository("childAlertDao")
-public class ChildAlertDataAccessService implements ChildAlertDAO{
+@Repository
+public class ChildAlertDaoImpl implements ChildAlertDAO{
 	private static final Logger logger = LogManager.getLogger(AlertsApiApplication.class);
-	private HomeDataAccessService homeDao;
+	private HomeDaoImpl homeDao;
 	
-	public ChildAlertDataAccessService(FirestationDataAccessService firestationDao, PersonDataAccessService personDao,
-			MedicalRecordDataAccessService medicalRecordDao, HomeDataAccessService homeDao) {
+	public ChildAlertDaoImpl(FirestationDaoImpl firestationDao, PersonDaoImpl personDao,
+			MedicalRecordDaoImpl medicalRecordDao, HomeDaoImpl homeDao) {
 		super();
 		this.homeDao = homeDao;
 	}

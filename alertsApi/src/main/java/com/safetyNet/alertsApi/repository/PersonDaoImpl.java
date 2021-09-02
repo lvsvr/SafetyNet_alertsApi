@@ -9,15 +9,16 @@ import org.json.simple.JSONObject;
 import org.springframework.stereotype.Repository;
 
 import com.safetyNet.alertsApi.AlertsApiApplication;
+import com.safetyNet.alertsApi.model.JsonReader;
 import com.safetyNet.alertsApi.model.Person;
 
-@Repository("personDao")
-public class PersonDataAccessService implements PersonDAO {
+@Repository
+public class PersonDaoImpl implements PersonDAO {
 	private static final Logger logger = LogManager.getLogger(AlertsApiApplication.class);
 	private static JsonReader jsonReader = new JsonReader();
 	private static ArrayList<Person> persons;
 
-	public PersonDataAccessService() {
+	public PersonDaoImpl() {
 		super();
 		JSONObject dataJsonObject = jsonReader.readDataFromJsonFile();
 		persons = jsonReader.getPersonsFromJson(dataJsonObject);

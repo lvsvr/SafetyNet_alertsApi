@@ -2,8 +2,6 @@ package com.safetyNet.alertsApi.service;
 
 import java.util.ArrayList;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.safetyNet.alertsApi.model.Home;
@@ -13,8 +11,7 @@ import com.safetyNet.alertsApi.repository.HomeDAO;
 public class HomeService {
 	private final HomeDAO homeDao;
 
-	@Autowired
-	public HomeService(@Qualifier("homeDao")HomeDAO homeDao) {
+	public HomeService(HomeDAO homeDao) {
 		super();
 		this.homeDao = homeDao;
 	}
