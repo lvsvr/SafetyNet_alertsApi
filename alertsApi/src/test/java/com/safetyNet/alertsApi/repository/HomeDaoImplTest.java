@@ -1,5 +1,6 @@
 package com.safetyNet.alertsApi.repository;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNotSame;
 
@@ -28,7 +29,6 @@ public class HomeDaoImplTest {
 		HomeDaoImpl homeDao = new HomeDaoImpl(firestationDao, personDao, medicalRecordDao);
 		//THEN
 		assertNotNull(homeDao.getAddressList());
-		
 	}
 	
 	@Test
@@ -40,6 +40,8 @@ public class HomeDaoImplTest {
 		assertNotNull(homeDao.createHomeListByAddress(addressList));
 		
 	}
+	
+	
 	
 	@Test
 	public void shouldConfirmInsertFirestations() {
@@ -81,4 +83,11 @@ public class HomeDaoImplTest {
 		
 	}
 	
+	@Test
+	public void shouldReturnHomeByAddress() {
+		//WHEN
+		HomeDaoImpl homeDao = new HomeDaoImpl(firestationDao, personDao, medicalRecordDao);
+		//THEN
+		assertNotNull(homeDao.getHomeList());
+	}
 }
