@@ -1,8 +1,11 @@
 package com.safetyNet.alertsApi.model;
 
+import static org.junit.jupiter.api.Assertions.assertNull;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 @SpringBootTest
 public class AgeCalculatorTest {
@@ -20,5 +23,6 @@ public class AgeCalculatorTest {
 	//THEN
 	assertEquals(30,ac.calculateAge(mr.getBirthDate()));
 	}
+
 	
 }

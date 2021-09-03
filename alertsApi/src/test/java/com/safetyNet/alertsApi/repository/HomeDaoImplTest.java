@@ -90,4 +90,5 @@ public class HomeDaoImplTest {
 		//THEN
 		assertNotNull(homeDao.getHomeList());
 	}
+	
 }
