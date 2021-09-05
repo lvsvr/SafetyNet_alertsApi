@@ -60,5 +60,18 @@ public class ChildAlertDaoImplTest {
 		assertNotNull(childDao.getChildListFromMedicalRecordList(mrlist));
 	}
 	
+	@Test
+	public void shouldReturnChildListByAddress() {
+		//WHEN
+		FirestationDaoImpl firestationDao2 = new FirestationDaoImpl(); 
+		PersonDaoImpl personDao2 = new PersonDaoImpl();
+		MedicalRecordDaoImpl medicalRecordDao2 = new MedicalRecordDaoImpl();
+		HomeDaoImpl homeDao2 = new HomeDaoImpl(firestationDao2, personDao2, medicalRecordDao2);
+		ChildAlertDaoImpl childDao = new ChildAlertDaoImpl(firestationDao2, personDao2, medicalRecordDao2, homeDao2);
+		ArrayList<MedicalRecord> mrlist = medicalRecordDao.getAllMedicalRecords();
+		//THEN
+		assertNotNull(childDao.getChildListByAddress("951 LoneTree Rd"));
+	}
+	
 	
 	}

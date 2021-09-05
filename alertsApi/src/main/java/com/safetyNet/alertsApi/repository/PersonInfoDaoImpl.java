@@ -2,12 +2,9 @@ package com.safetyNet.alertsApi.repository;
 
 import java.util.ArrayList;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.safetyNet.alertsApi.AlertsApiApplication;
 import com.safetyNet.alertsApi.model.AgeCalculator;
 import com.safetyNet.alertsApi.model.MedicalRecord;
 import com.safetyNet.alertsApi.model.Person;
@@ -15,7 +12,6 @@ import com.safetyNet.alertsApi.model.PersonInfo;
 
 @Repository
 public class PersonInfoDaoImpl implements PersonInfoDAO {
-	private static final Logger logger = LogManager.getLogger(AlertsApiApplication.class);
 	private PersonDaoImpl personDao;
 	private MedicalRecordDaoImpl medicalRecordDao;
 

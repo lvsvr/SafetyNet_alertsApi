@@ -2,11 +2,8 @@ package com.safetyNet.alertsApi.repository;
 
 import java.util.ArrayList;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
-import com.safetyNet.alertsApi.AlertsApiApplication;
 import com.safetyNet.alertsApi.model.AgeCalculator;
 import com.safetyNet.alertsApi.model.Firestation;
 import com.safetyNet.alertsApi.model.Home;
@@ -18,7 +15,6 @@ import com.safetyNet.alertsApi.model.PersonForEmergencyCase;
 
 @Repository
 public class HomeDaoImpl implements HomeDAO{
-	private static final Logger logger = LogManager.getLogger(AlertsApiApplication.class);
 	private FirestationDaoImpl firestationDao;
 	private PersonDaoImpl personDao;
 	private MedicalRecordDaoImpl medicalRecordDao;
