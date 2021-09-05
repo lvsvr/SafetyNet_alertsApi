@@ -18,7 +18,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import com.safetyNet.alertsApi.controller.FirestationController;
 import com.safetyNet.alertsApi.service.FirestationService;
 import com.safetyNet.alertsApi.service.HomeFirestationUrlService;
-import com.safetyNet.alertsApi.service.HomeService;
 
 @EnableWebMvc
 @SpringBootTest(classes=FirestationController.class)
@@ -33,9 +32,7 @@ public class FirestationControllerTest {
 	
 	@MockBean
 	private HomeFirestationUrlService homeFirestationUrlService;
-	
-	@MockBean
-	private HomeService homeService;
+
 	
 	@Test
 	public void shouldInsertFirestation() throws Exception {

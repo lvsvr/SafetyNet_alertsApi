@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.safetyNet.alertsApi.model.Firestation;
 import com.safetyNet.alertsApi.service.FirestationService;
 import com.safetyNet.alertsApi.service.HomeFirestationUrlService;
-import com.safetyNet.alertsApi.service.HomeService;
 
 @RequestMapping("/firestation")
 @RestController
@@ -27,7 +26,7 @@ public class FirestationController {
 	private final HomeFirestationUrlService homeFirestationUrlService;
 
 	@Autowired
-	public FirestationController(FirestationService firestationService, HomeService homeService, HomeFirestationUrlService homeFirestationUrlService) {
+	public FirestationController(FirestationService firestationService, HomeFirestationUrlService homeFirestationUrlService) {
 		super();
 		this.firestationService = firestationService;
 		this.homeFirestationUrlService = homeFirestationUrlService;
