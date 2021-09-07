@@ -1,8 +1,6 @@
 package com.safetyNet.alertsApi.service;
 
 import java.util.ArrayList;
-import java.util.Optional;
-
 import org.springframework.stereotype.Service;
 
 import com.safetyNet.alertsApi.repository.FirestationDAO;
@@ -27,7 +25,7 @@ public class FirestationService {
 		return firestationDao.insertFirestation(firestation);
 	}
 
-	public Optional<Firestation> getFirestationByAddress(String address) {
+	public Firestation getFirestationByAddress(String address) {
 		return firestationDao.getFirestationByAddress(address);
 	}
 

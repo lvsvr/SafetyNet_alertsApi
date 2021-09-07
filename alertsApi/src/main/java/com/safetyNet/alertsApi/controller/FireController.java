@@ -27,7 +27,10 @@ public class FireController {
 	@GetMapping
 	public ArrayList<PersonForEmergencyCase> getPersonsListByAddress(@RequestParam(value = "address") String address) {
 		address = address.replaceAll("_", " ");
-		logger.info("Get person list by address : ", fireService.getPersonsListByAddress(address));
+		logger.info("Get person list by address : "+ address);
+		for(PersonForEmergencyCase pfec : fireService.getPersonsListByAddress(address)) {
+			logger.info(pfec.getAddress()+" "+pfec.getFirestation()+" "+pfec.getFirstName()+" "+pfec.getLastName()+" "+pfec.getAge()+" "+pfec.getPhone()+" "+ pfec.getMedications(), pfec.getAllergies());
+		}
 		return fireService.getPersonsListByAddress(address);
 	}
 

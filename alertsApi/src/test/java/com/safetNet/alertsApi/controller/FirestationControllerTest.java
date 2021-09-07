@@ -40,17 +40,9 @@ public class FirestationControllerTest {
 		mockMvc.perform(MockMvcRequestBuilders
 				.post("/firestation")
 		.contentType(MediaType.APPLICATION_JSON)
-		.content("{\"address\":\"951 LoneTree Rd\",\"station\":\"2\"}"))	
+		.content("{\"address\":\"951_LoneTree_Rd\",\"station\":\"2\"}"))	
 	      .andExpect(MockMvcResultMatchers.status().isOk());
 		
-	}
-	
-	@Test
-	public void shouldReturnFirestationByAddress() throws Exception {
-		
-		mockMvc.perform(get("/firestation/1509_Culver_St"))
-			.andDo(print())
-			.andExpect(status().isOk());
 	}
 	
 	@Test

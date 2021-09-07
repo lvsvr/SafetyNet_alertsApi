@@ -68,13 +68,11 @@ public class PersonDaoImplTest {
 		person.setFirstName("gin");
 		person.setLastName("rogers");
 		personDao.insertPerson(person);
-		PersonDaoImpl personDao2 = personDao;
-		String firstName = "ginger";
+		person.setFirstName("ginger");
 		//WHEN
-		personDao.updatePersonByNames(firstName,person.getLastName(), person);
+		personDao.updatePersonByNames("gin","rogers", person);
 		//THEN
-		assertNotSame(personDao2.getPersonByNames(person.getFirstName(), person.getLastName()), personDao.getPersonByNames(person.getFirstName(), person.getLastName()));
-		
+		assertNotSame(personDao.getPersonByNames(person.getFirstName(), person.getLastName()), personDao.getPersonByNames("gin", "rogers"));
 		
 	}
 	

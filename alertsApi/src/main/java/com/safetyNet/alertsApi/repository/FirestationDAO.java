@@ -1,7 +1,6 @@
 package com.safetyNet.alertsApi.repository;
 
 import java.util.ArrayList;
-import java.util.Optional;
 import java.util.Set;
 
 import com.safetyNet.alertsApi.model.Firestation;
@@ -10,7 +9,7 @@ public interface FirestationDAO {
 
 	ArrayList<Firestation> getAllFirestations();
 
-	Optional<Firestation> getFirestationByAddress(String address);
+	Firestation getFirestationByAddress(String address);
 
 	int insertFirestation(Firestation firestation);
 

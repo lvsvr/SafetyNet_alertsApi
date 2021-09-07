@@ -28,7 +28,10 @@ public class ChildAlertController {
 	@GetMapping
 	public ArrayList<String> getChildListByAddress(@RequestParam(value="address")String address){
 		address = address.replaceAll("_", " ");
-		logger.info("Get child list byy address : ", childAlertService.getChildListByAddress(address));
+		logger.info("Get child list by address : "+ address);
+		for (String child : childAlertService.getChildListByAddress(address)) {
+			logger.info(child);
+		}
 		return childAlertService.getChildListByAddress(address); 
 	}
 }

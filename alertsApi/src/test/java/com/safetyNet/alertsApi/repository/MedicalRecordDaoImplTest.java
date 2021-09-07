@@ -9,90 +9,87 @@ import org.json.simple.JSONObject;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.safetyNet.alertsApi.model.Firestation;
 import com.safetyNet.alertsApi.model.JsonReader;
 import com.safetyNet.alertsApi.model.MedicalRecord;
-import com.safetyNet.alertsApi.model.Person;
 
 @SpringBootTest
 public class MedicalRecordDaoImplTest {
-	
+
 	@Test
 	public void shouldLoadDataJsonObject() {
-		//GIVEN
+		// GIVEN
 		JsonReader jsonReader = new JsonReader();
-		//WHEN
+		// WHEN
 		JSONObject dataJsonObject = jsonReader.readDataFromJsonFile();
-		//THEN
+		// THEN
 		assertNotNull(dataJsonObject);
 	}
-	
+
 	@Test
 	public void shouldLoadMedicalRecordsArrayList() {
-		//GIVEN
+		// GIVEN
 		JsonReader jsonReader = new JsonReader();
 		JSONObject dataJsonObject = jsonReader.readDataFromJsonFile();
 		ArrayList<MedicalRecord> medicalRecords;
-		//WHEN
+		// WHEN
 		medicalRecords = jsonReader.getMedicalRecordsFromJson(dataJsonObject);
-		//THEN
+		// THEN
 		assertNotNull(medicalRecords);
 	}
-	
+
 	@Test
 	public void shouldReturnAllMedicalRecords() {
-		//GIVEN WHEN
+		// GIVEN WHEN
 		MedicalRecordDaoImpl medicalRecordDao = new MedicalRecordDaoImpl();
-		//THEN
+		// THEN
 		assertNotNull(medicalRecordDao.getAllMedicalRecords());
-		
+
 	}
-	
+
 	@Test
 	public void shouldInsertMedicalRecord() {
-		//GIVEN
+		// GIVEN
 		MedicalRecordDaoImpl medicalRecordDao = new MedicalRecordDaoImpl();
 		MedicalRecord mr = new MedicalRecord();
 		mr.setFirstName("gin");
 		mr.setLastName("rogers");
-		//WHEN
+		// WHEN
 		medicalRecordDao.insertMedicalRecord(mr);
-		//THEN
+		// THEN
 		assertNotNull(medicalRecordDao.getMedicalRecordByNames("gin", "rogers"));
-		
+
 	}
-	
+
 	@Test
 	public void shouldUpdateMedicalRecordByNames() {
-		//GIVEN
 		MedicalRecordDaoImpl medicalRecordDao = new MedicalRecordDaoImpl();
-		MedicalRecord mr = new MedicalRecord();
-		mr.setFirstName("gin");
-		mr.setLastName("rogers");
-		medicalRecordDao.insertMedicalRecord(mr);
-		MedicalRecordDaoImpl medicalRecordDao2 = medicalRecordDao;
-		String firstName = "ginger";
-		//WHEN
-		medicalRecordDao.updateMedicalRecordByNames(firstName,mr.getLastName(), mr);
-		//THEN
-		assertNotSame(medicalRecordDao2.getMedicalRecordByNames(mr.getFirstName(), mr.getLastName()), medicalRecordDao.getMedicalRecordByNames(mr.getFirstName(), mr.getLastName()));
-		
-		
+		MedicalRecord medicalRecord = new MedicalRecord();
+		medicalRecord.setFirstName("gin");
+		medicalRecord.setLastName("rogers");
+		medicalRecordDao.insertMedicalRecord(medicalRecord);
+		medicalRecord.setFirstName("ginger");
+		// WHEN
+		medicalRecordDao.updateMedicalRecordByNames("gin", "rogers", medicalRecord);
+		// THEN
+		assertNotSame(
+				medicalRecordDao.getMedicalRecordByNames(medicalRecord.getFirstName(), medicalRecord.getLastName()),
+				medicalRecordDao.getMedicalRecordByNames("gin", "rogers"));
+
 	}
-	
+
 	@Test
 	public void shouldDeleteMedicalRecordByNames() {
-		//GIVEN
+		// GIVEN
 		MedicalRecordDaoImpl medicalRecordDao = new MedicalRecordDaoImpl();
-		
+
 		MedicalRecord mr = new MedicalRecord();
 		mr.setFirstName("gin");
 		mr.setLastName("rogers");
 		medicalRecordDao.insertMedicalRecord(mr);
-		//WHEN
-		medicalRecordDao.deleteMedicalRecordByNames(mr.getFirstName(),mr.getLastName());
-		//THEN
-		assertNotSame(medicalRecordDao.getMedicalRecordByNames(mr.getFirstName(),mr.getLastName()), mr);
-		
+		// WHEN
+		medicalRecordDao.deleteMedicalRecordByNames(mr.getFirstName(), mr.getLastName());
+		// THEN
+		assertNotSame(medicalRecordDao.getMedicalRecordByNames(mr.getFirstName(), mr.getLastName()), mr);
+
 	}
 }

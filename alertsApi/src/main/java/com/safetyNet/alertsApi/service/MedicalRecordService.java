@@ -1,8 +1,6 @@
 package com.safetyNet.alertsApi.service;
 
 import java.util.ArrayList;
-import java.util.Optional;
-
 import org.springframework.stereotype.Service;
 
 import com.safetyNet.alertsApi.repository.MedicalRecordDAO;
@@ -27,7 +25,7 @@ public class MedicalRecordService {
 		return medicalRecordDao.insertMedicalRecord(medicalRecord);
 	}
 
-	public Optional<MedicalRecord> getMedicalRecordByNames(String firstName, String lastName) {
+	public MedicalRecord getMedicalRecordByNames(String firstName, String lastName) {
 		return medicalRecordDao.getMedicalRecordByNames(firstName, lastName);
 	}
 

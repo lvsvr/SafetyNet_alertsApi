@@ -1,8 +1,6 @@
 package com.safetyNet.alertsApi.service;
 
 import java.util.ArrayList;
-import java.util.Optional;
-
 import org.springframework.stereotype.Service;
 
 import com.safetyNet.alertsApi.repository.PersonDAO;
@@ -27,7 +25,7 @@ public class PersonService {
 		return personDao.insertPerson(person);
 	}
 
-	public Optional<Person> getPersonByNames(String firstName, String lastName) {
+	public Person getPersonByNames(String firstName, String lastName) {
 		return personDao.getPersonByNames(firstName, lastName);
 	}
 

@@ -1,5 +1,6 @@
 package com.safetyNet.alertsApi.service;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNotSame;
 
@@ -10,7 +11,6 @@ import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.safetyNet.alertsApi.model.Firestation;
-import com.safetyNet.alertsApi.model.Person;
 import com.safetyNet.alertsApi.repository.FirestationDaoImpl;
 
 @SpringBootTest
@@ -44,6 +44,7 @@ public class FirestationServiceTest {
 	@Test
 	public void shouldReturnFirestationByAddress() {
 		//WHEN
+		FirestationDaoImpl firestationDao = new FirestationDaoImpl();
 		FirestationService fsService = new FirestationService(firestationDao);
 		//THEN
 		assertNotNull(fsService.getFirestationByAddress("1509 Culver St"));
@@ -65,13 +66,14 @@ public class FirestationServiceTest {
 	@Test
 	public void shouldUpdateFirestationByAddress() {
 		//GIVEN
-		FirestationService fsService = new FirestationService(firestationDao);
-		Firestation fs= new Firestation("paradise", "7");
+		FirestationDaoImpl firestationDao = new FirestationDaoImpl();
+		FirestationService firestationService = new FirestationService(firestationDao);
+		Firestation firestation = firestationService.getFirestationByAddress("1509 Culver St");
+		firestation.setStation("7");
 		//WHEN
-		fsService.updateFirestationByAddress("1509 Culver St", fs);
+		firestationService.updateFirestationByAddress("1509 Culver St", firestation);
 		//THEN
-		assertNotNull(fsService.getFirestationByAddress("paradise"));
+		assertEquals("7",firestationService.getFirestationByAddress("1509 Culver St").getStation());
 		
 	}
-
 }

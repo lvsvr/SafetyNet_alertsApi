@@ -1,8 +1,6 @@
 package com.safetyNet.alertsApi.repository;
 
 import java.util.ArrayList;
-import java.util.Optional;
-
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Repository;
 
@@ -34,19 +32,19 @@ public class PersonDaoImpl implements PersonDAO {
 	}
 
 	@Override
-	public Optional<Person> getPersonByNames(String firstName, String lastName) {
+	public Person getPersonByNames(String firstName, String lastName) {
 		Person namedPerson = new Person();
-		for (Person person : persons) {
+		for (Person person : getAllPersons()) {
 			if (person.getFirstName().equals(firstName) && person.getLastName().equals(lastName)) {
 				namedPerson = person;
 			}
 		}
-		return Optional.of(namedPerson);
+		return namedPerson;
 	}
 
 	@Override
 	public int updatePersonByNames(String firstName, String lastName, Person updatedPerson) {
-		Optional<Person> personToUpdate = getPersonByNames(firstName, lastName);
+		Person personToUpdate = getPersonByNames(firstName, lastName);
 		if (personToUpdate == null) {
 			return 0;
 		}
@@ -64,7 +62,7 @@ public class PersonDaoImpl implements PersonDAO {
 
 	@Override
 	public int deletePersonByNames(String firstName, String lastName) {
-		Optional<Person> personToDelete = getPersonByNames(firstName, lastName);
+		Person personToDelete = getPersonByNames(firstName, lastName);
 		if (personToDelete == null) {
 			return 0;
 		}

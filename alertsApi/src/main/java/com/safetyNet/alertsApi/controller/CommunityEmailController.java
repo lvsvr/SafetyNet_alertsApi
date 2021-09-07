@@ -1,6 +1,5 @@
 package com.safetyNet.alertsApi.controller;
 
-import java.util.ArrayList;
 import java.util.Set;
 
 import org.apache.logging.log4j.LogManager;
@@ -25,10 +24,13 @@ public class CommunityEmailController {
 		super();
 		this.communityEmailService = communityEmailService;
 	}
-	
+
 	@GetMapping
-	public Set<String> getEmailListByCity(@RequestParam(name = "city")String city){
-		logger.info("Get email list by city : ", communityEmailService.getEmailListByCity(city));
+	public Set<String> getEmailListByCity(@RequestParam(name = "city") String city) {
+		logger.info("Get email list by city : " + city);
+		for (String mail : communityEmailService.getEmailListByCity(city)) {
+			logger.info(mail);
+		}
 		return communityEmailService.getEmailListByCity(city);
 	}
 

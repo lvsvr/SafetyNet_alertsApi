@@ -55,9 +55,11 @@ public class PersonControllerTest {
 	@Test
 	public void shouldReturnPersonByNames() throws Exception {
 		
-		mockMvc.perform(get("/person/John/Boyd"))
-			.andDo(print())
-			.andExpect(status().isOk());
+		mockMvc.perform(MockMvcRequestBuilders
+				.get("/person")
+		.contentType(MediaType.APPLICATION_JSON)
+		.content("{\"firstName\":\"Eric\", \"lastName\":\"Cadigan\", \"address\":\"951 LoneTree Rd\", \"city\":\"Culver\", \"zip\":\"97451\", \"phone\":\"841-874-7458\", \"email\":\"gramps@email.com\" }"))	
+	      .andExpect(MockMvcResultMatchers.status().isOk());
 		
 	}
 	

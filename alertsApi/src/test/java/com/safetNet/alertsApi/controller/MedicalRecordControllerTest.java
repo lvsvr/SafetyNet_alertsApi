@@ -52,9 +52,11 @@ public class MedicalRecordControllerTest {
 	@Test
 	public void shouldReturnMedicalRecordByNames() throws Exception {
 		
-		mockMvc.perform(get("/medicalRecord/John/Boyd"))
-			.andDo(print())
-			.andExpect(status().isOk());
+		mockMvc.perform(MockMvcRequestBuilders
+				.get("/medicalRecord")
+		.contentType(MediaType.APPLICATION_JSON)
+		.content("{\"firstName\":\"Eric\", \"lastName\":\"Cadigan\", \"birthdate\":\"08/06/1945\", \"medications\":[\"tradoxidine:400mg\"], \"allergies\":[] }"))	
+	      .andExpect(MockMvcResultMatchers.status().isOk());
 		
 	}
 	

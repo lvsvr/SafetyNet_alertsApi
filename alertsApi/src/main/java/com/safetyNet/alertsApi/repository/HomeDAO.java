@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import com.safetyNet.alertsApi.model.Home;
 import com.safetyNet.alertsApi.model.PersonForEmergencyCase;
-import com.safetyNet.alertsApi.model.PersonInfo;
 
 public interface HomeDAO {
 

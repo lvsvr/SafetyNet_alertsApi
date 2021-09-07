@@ -1,5 +1,6 @@
 package com.safetyNet.alertsApi.service;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNotSame;
 
@@ -10,7 +11,6 @@ import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.safetyNet.alertsApi.model.MedicalRecord;
-import com.safetyNet.alertsApi.model.Person;
 import com.safetyNet.alertsApi.repository.MedicalRecordDaoImpl;
 
 @SpringBootTest
@@ -43,6 +43,7 @@ public class MedicalRecordServiceTest {
 	@Test
 	public void shouldReturnMedicalRecordByNames() {
 		//WHEN
+		MedicalRecordDaoImpl medicalRecordDao = new MedicalRecordDaoImpl();
 		MedicalRecordService medicalRecordService = new MedicalRecordService(medicalRecordDao);
 		//THEN
 		assertNotNull(medicalRecordService.getMedicalRecordByNames("John", "Boyd"));
@@ -64,12 +65,14 @@ public class MedicalRecordServiceTest {
 	@Test
 	public void shouldUpdateMedicalRecordByNames() {
 		//GIVEN
+		MedicalRecordDaoImpl medicalRecordDao = new MedicalRecordDaoImpl();
 		MedicalRecordService medicalRecordService = new MedicalRecordService(medicalRecordDao);
-		MedicalRecord mr = new MedicalRecord("gin","rogers","07/14/1789",null, null);
+		MedicalRecord medicalRecord = medicalRecordService.getMedicalRecordByNames("John", "Boyd");
+		medicalRecord.setBirthDate("07/14/1789");
 		//WHEN
-		medicalRecordService.updateMedicalRecordByNames("John", "Boyd", mr);
+		medicalRecordService.updateMedicalRecordByNames("John","Boyd", medicalRecord);
 		//THEN
-		assertNotNull(medicalRecordService.getMedicalRecordByNames("gin", "rogers"));
+		assertEquals("07/14/1789",medicalRecordService.getMedicalRecordByNames("John", "Boyd").getBirthDate());
 		
 	}
 }

@@ -1,8 +1,6 @@
 package com.safetyNet.alertsApi.controller;
 
 import java.util.ArrayList;
-import java.util.Optional;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,14 +40,15 @@ public class FirestationController {
 
 	@PostMapping
 	public void insertFirestation(@RequestBody Firestation firestation) {
-		logger.info("Insert firestation : ", firestation);
+		logger.info("Insert firestation : " + firestation.getAddress()+" "+ firestation.getStation());
 		firestationService.insertFirestation(firestation);
 	}
 
 	@GetMapping(path = "{address}")
-	public Optional<Firestation> getFirestation(@PathVariable String address) {
+	public Firestation getFirestation(@PathVariable String address) {
 		address = address.replaceAll("_", " ");
-		logger.info("Get firestation by address : ", firestationService.getFirestationByAddress(address));
+		Firestation firestation = firestationService.getFirestationByAddress(address);
+		logger.info("Get firestation by address : "+ address+" "+firestation.getStation());
 		return firestationService.getFirestationByAddress(address);
 	}
 
@@ -63,13 +62,17 @@ public class FirestationController {
 	@PutMapping(path = "{address}")
 	public void updateFirestationByAddress(@PathVariable String address, @RequestBody Firestation updatedFirestation) {
 		address = address.replaceAll("_", " ");
-		logger.info("Update firestation by address: " + address);
+		logger.info("Update firestation by address: " + address +" "+updatedFirestation.getStation());
 		firestationService.updateFirestationByAddress(address, updatedFirestation);
 	}
 	
 	@GetMapping
 	public ArrayList<String> getListOfPersonsByFirestationNumber(@RequestParam(value="stationNumber")String firestationNumber){
-		logger.info("Get list of persons byy firestation number: ", homeFirestationUrlService.getListOfPersonsByFirestationNumber(firestationNumber));
+		ArrayList<String> persons = homeFirestationUrlService.getListOfPersonsByFirestationNumber(firestationNumber);
+		logger.info("Get list of persons by firestation number: "+ firestationNumber);
+		for(String person :persons) {
+			logger.info(person);
+		}
 		return homeFirestationUrlService.getListOfPersonsByFirestationNumber(firestationNumber);
 	}
 }

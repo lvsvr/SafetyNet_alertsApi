@@ -30,8 +30,11 @@ public class PersonInfoController {
 	
 	@GetMapping
 	public ArrayList<PersonInfo> getPersonInfoByFirstNameAndLastName(@RequestParam(name="firstName")String firstName, @RequestParam(name="lastName") String lastName){
-		logger.info("Person info by first name 1 last name:", personInfoService.getPersonInfoByFirstNameAndLastName(firstName, lastName) );
-		return personInfoService.getPersonInfoByFirstNameAndLastName(firstName, lastName);
+		logger.info("Person info by first name and last name: " );
+		for(PersonInfo personInfo :personInfoService.getPersonInfoByFirstNameAndLastName(firstName, lastName)) {
+			logger.info(personInfo.getFirstName()+" "+personInfo.getLastName()+" "+personInfo.getAddress()+" age:"+ personInfo.getAge()+" "+personInfo.getEmail()+" "+ personInfo.getMedications()+" "+personInfo.getAllergies());
+		}
+			return personInfoService.getPersonInfoByFirstNameAndLastName(firstName, lastName);
 		
 		//logger.error("error");
 	}

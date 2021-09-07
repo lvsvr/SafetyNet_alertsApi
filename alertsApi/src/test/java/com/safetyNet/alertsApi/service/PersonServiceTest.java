@@ -1,5 +1,6 @@
 package com.safetyNet.alertsApi.service;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNotSame;
 import java.util.ArrayList;
@@ -41,6 +42,7 @@ public class PersonServiceTest {
 	@Test
 	public void shouldReturnPersonByNames() {
 		//WHEN
+		PersonDaoImpl personDao = new PersonDaoImpl();
 		PersonService personService = new PersonService(personDao);
 		//THEN
 		assertNotNull(personService.getPersonByNames("John", "Boyd"));
@@ -62,12 +64,14 @@ public class PersonServiceTest {
 	@Test
 	public void shouldUpdatePersonByNames() {
 		//GIVEN
+		PersonDaoImpl personDao = new PersonDaoImpl();
 		PersonService personService = new PersonService(personDao);
-		Person person = new Person("gin","rogers","paradise","Culver","97451","841-874-6512","jaboyd@email.com");
+		Person person = personService.getPersonByNames("John", "Boyd");
+		person.setAddress("paradise");
 		//WHEN
-		personService.updatePersonByNames("John", "Boyd", person);
+		personService.updatePersonByNames("John","Boyd", person);
 		//THEN
-		assertNotNull(personService.getPersonByNames("gin", "rogers"));
+		assertEquals("paradise",personService.getPersonByNames("John", "Boyd").getAddress());
 		
 	}
 }

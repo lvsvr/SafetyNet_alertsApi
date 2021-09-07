@@ -26,7 +26,13 @@ public class FloodController {
 	@RequestMapping("/stations")
 	@GetMapping
 	public ArrayList<PersonForEmergencyCase> getPersonsListByFirestationNumberList(@RequestParam ArrayList<String> stations){
-		logger.info("Get persons list by firestation's number list : ", floodService.getPersonsListByFirestationNumberList(stations));
+		logger.info("Get persons list by firestation's number list : ");
+		for (String station :stations) {
+			logger.info(station);
+		}
+		for(PersonForEmergencyCase pfec : floodService.getPersonsListByFirestationNumberList(stations)) {
+			logger.info(pfec.getAddress()+" "+pfec.getFirestation()+" "+pfec.getFirstName()+" "+pfec.getLastName()+" "+pfec.getAge()+" "+pfec.getPhone()+" "+ pfec.getMedications(), pfec.getAllergies());
+		}
 		return floodService.getPersonsListByFirestationNumberList(stations);
 	}
 }

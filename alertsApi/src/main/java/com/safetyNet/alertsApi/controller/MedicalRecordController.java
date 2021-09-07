@@ -1,8 +1,6 @@
 package com.safetyNet.alertsApi.controller;
 
 import java.util.ArrayList;
-import java.util.Optional;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,20 +31,27 @@ public class MedicalRecordController {
 
 	@GetMapping
 	public ArrayList<MedicalRecord> getAllMedicalRecords() {
-		logger.info("Get all medical records: ", medicalRecordService.getAllMedicalRecords() );
+		logger.info("Get all medical records: " );
+		for(MedicalRecord medicalRecord :medicalRecordService.getAllMedicalRecords()) {
+			logger.info(medicalRecord.getFirstName()+" "+medicalRecord.getLastName()+" "+medicalRecord.getBirthDate()+" "+medicalRecord.getMedications()+" "+medicalRecord.getAllergies());
+			}
 		return medicalRecordService.getAllMedicalRecords();
 	}
 
 	@PostMapping
 	public void insertMedicalRecord(@RequestBody MedicalRecord medicalRecord) {
-		logger.info("Insert medical record: ", medicalRecord);
+		logger.info("Insert medical record: ");
+		logger.info(medicalRecord.getFirstName()+" "+medicalRecord.getLastName()+" "+medicalRecord.getBirthDate()+" "+medicalRecord.getMedications()+" "+medicalRecord.getAllergies());
 		medicalRecordService.insertMedicalRecord(medicalRecord);
 	}
 
 	@GetMapping(path = "{firstName}/{lastName}")
-	public Optional<MedicalRecord> getMedicalRecordByNames(@PathVariable String firstName,
+	public MedicalRecord getMedicalRecordByNames(@PathVariable String firstName,
 			@PathVariable String lastName) {
+
+		MedicalRecord medicalRecord = medicalRecordService.getMedicalRecordByNames(firstName, lastName);
 		logger.info("Get medical record by names: " + firstName + " " + lastName );
+		logger.info(medicalRecord.getFirstName()+" "+medicalRecord.getLastName()+" "+medicalRecord.getBirthDate()+" "+medicalRecord.getMedications()+" "+medicalRecord.getAllergies());
 		return medicalRecordService.getMedicalRecordByNames(firstName, lastName);
 	}
 
@@ -60,6 +65,7 @@ public class MedicalRecordController {
 	public void updateMedicalRecordByNames(@PathVariable String firstName, @PathVariable String lastName,
 			@RequestBody MedicalRecord medicalRecord) {
 		logger.info("Update medical record by names: " + firstName + " " + lastName );
+		logger.info(medicalRecord.getFirstName()+" "+medicalRecord.getLastName()+" "+medicalRecord.getBirthDate()+" "+medicalRecord.getMedications()+" "+medicalRecord.getAllergies());
 		medicalRecordService.updateMedicalRecordByNames(firstName, lastName, medicalRecord);
 	}
 }

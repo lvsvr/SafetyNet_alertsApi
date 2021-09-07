@@ -2,7 +2,6 @@ package com.safetyNet.alertsApi.repository;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 import org.json.simple.JSONObject;
@@ -35,18 +34,18 @@ public class FirestationDaoImpl implements FirestationDAO {
 	}
 
 	@Override
-	public Optional<Firestation> getFirestationByAddress(String address) {
+	public Firestation getFirestationByAddress(String address) {
 		Firestation namedFirestation = new Firestation();
 		for (Firestation firestation : firestations) {
 			if (firestation.getAddress().equals(address))
 				namedFirestation = firestation;
 		}
-		return Optional.of(namedFirestation);
+		return namedFirestation;
 	}
 
 	@Override
 	public int updateFirestationByAddress(String address, Firestation updatedFirestation) {
-		Optional<Firestation> firestationToUpdate = getFirestationByAddress(address);
+		Firestation firestationToUpdate = getFirestationByAddress(address);
 		if (firestationToUpdate == null) {
 			return 0;
 		}
@@ -64,7 +63,7 @@ public class FirestationDaoImpl implements FirestationDAO {
 
 	@Override
 	public int deleteFirestationByAddress(String address) {
-		Optional<Firestation> firestationToDelete = getFirestationByAddress(address);
+		Firestation firestationToDelete = getFirestationByAddress(address);
 		if (firestationToDelete == null) {
 			return 0;
 		}

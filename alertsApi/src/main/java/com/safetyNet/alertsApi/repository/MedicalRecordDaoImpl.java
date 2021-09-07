@@ -1,8 +1,6 @@
 package com.safetyNet.alertsApi.repository;
 
 import java.util.ArrayList;
-import java.util.Optional;
-
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Repository;
 
@@ -34,18 +32,18 @@ public class MedicalRecordDaoImpl implements MedicalRecordDAO {
 	}
 
 	@Override
-	public Optional<MedicalRecord> getMedicalRecordByNames(String firstName, String lastName) {
+	public MedicalRecord getMedicalRecordByNames(String firstName, String lastName) {
 		MedicalRecord namedMedicalRecord = new MedicalRecord();
-		for (MedicalRecord medicalRecord : medicalRecords) {
+		for (MedicalRecord medicalRecord : getAllMedicalRecords()) {
 			if (medicalRecord.getFirstName().equals(firstName) && medicalRecord.getLastName().equals(lastName))
 				namedMedicalRecord = medicalRecord;
 		}
-		return Optional.of(namedMedicalRecord);
+		return namedMedicalRecord;
 	}
 
 	@Override
 	public int updateMedicalRecordByNames(String firstName, String lastName, MedicalRecord updatedMedicalRecord) {
-		Optional<MedicalRecord> medicalRecordToUpdate = getMedicalRecordByNames(firstName, lastName);
+		MedicalRecord medicalRecordToUpdate = getMedicalRecordByNames(firstName, lastName);
 		if (medicalRecordToUpdate == null) {
 			return 0;
 		}
@@ -63,13 +61,13 @@ public class MedicalRecordDaoImpl implements MedicalRecordDAO {
 
 	@Override
 	public int deleteMedicalRecordByNames(String firstName, String lastName) {
-		Optional<MedicalRecord> medicalRecordToDelete = getMedicalRecordByNames(firstName, lastName);
+		MedicalRecord medicalRecordToDelete = getMedicalRecordByNames(firstName, lastName);
 		if (medicalRecordToDelete == null) {
 			return 0;
 		}
 		ArrayList<MedicalRecord> medicalRecordsMemo = new ArrayList<MedicalRecord>();
-		for (MedicalRecord medicalRecord : medicalRecords) {
-			if (!(medicalRecord.getFirstName().equals(firstName) && medicalRecord.getLastName().equals(lastName))) {
+		for (MedicalRecord medicalRecord : getAllMedicalRecords()) {
+			if (!medicalRecord.getFirstName().equals(firstName) && !medicalRecord.getLastName().equals(lastName)) {
 				medicalRecordsMemo.add(medicalRecord);
 			}
 		}
