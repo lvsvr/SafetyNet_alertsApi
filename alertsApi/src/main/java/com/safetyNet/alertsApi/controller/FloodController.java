@@ -30,9 +30,12 @@ public class FloodController {
 		for (String station :stations) {
 			logger.info(station);
 		}
+//		stations.forEach(station -> System.out.println(station));
+		
 		for(PersonForEmergencyCase pfec : floodService.getPersonsListByFirestationNumberList(stations)) {
 			logger.info(pfec.getAddress()+" "+pfec.getFirestation()+" "+pfec.getFirstName()+" "+pfec.getLastName()+" "+pfec.getAge()+" "+pfec.getPhone()+" "+ pfec.getMedications(), pfec.getAllergies());
 		}
+//		stations.forEach(pfec -> System.out.println(pfec.toString()));
 		return floodService.getPersonsListByFirestationNumberList(stations);
 	}
 }
