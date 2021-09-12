@@ -23,19 +23,22 @@ public class FloodController {
 		super();
 		this.floodService = floodService;
 	}
+
 	@RequestMapping("/stations")
 	@GetMapping
-	public ArrayList<PersonForEmergencyCase> getPersonsListByFirestationNumberList(@RequestParam ArrayList<String> stations){
+	public ArrayList<PersonForEmergencyCase> getPersonsListByFirestationNumberList(
+			@RequestParam ArrayList<String> stations) {
 		logger.info("Get persons list by firestation's number list : ");
-		for (String station :stations) {
+		for (String station : stations) {
 			logger.info(station);
 		}
-//		stations.forEach(station -> System.out.println(station));
-		
-		for(PersonForEmergencyCase pfec : floodService.getPersonsListByFirestationNumberList(stations)) {
-			logger.info(pfec.getAddress()+" "+pfec.getFirestation()+" "+pfec.getFirstName()+" "+pfec.getLastName()+" "+pfec.getAge()+" "+pfec.getPhone()+" "+ pfec.getMedications(), pfec.getAllergies());
+
+		for (PersonForEmergencyCase pfec : floodService.getPersonsListByFirestationNumberList(stations)) {
+			logger.info(pfec.getAddress() + " " + pfec.getFirestation() + " " + pfec.getFirstName() + " "
+					+ pfec.getLastName() + " " + pfec.getAge() + " " + pfec.getPhone() + " " + pfec.getMedications(),
+					pfec.getAllergies());
 		}
-//		stations.forEach(pfec -> System.out.println(pfec.toString()));
+
 		return floodService.getPersonsListByFirestationNumberList(stations);
 	}
 }

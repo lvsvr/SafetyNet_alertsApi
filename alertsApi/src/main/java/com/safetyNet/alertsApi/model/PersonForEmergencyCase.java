@@ -101,5 +101,7 @@ public class PersonForEmergencyCase {
 	public void setFirestation(String firestation) {
 		this.firestation = firestation;
 	}
+	
+	
 
 }
